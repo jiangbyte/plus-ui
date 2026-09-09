@@ -57,13 +57,13 @@ pnpm build:prod
 
 | 登录                                                                 | 用户管理                                                             |
 | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| ![登录](docs/screenshots/login.png)                                  | ![用户管理](docs/screenshots/user.png)                               |
+| ![登录](./docs/screenshots/login.png)                                  | ![用户管理](docs/screenshots/user.png)                               |
 | 角色管理                                                             | 菜单管理                                                             |
-| ![角色管理](docs/screenshots/role.png)                               | ![菜单管理](docs/screenshots/menu.png)                               |
+| ![角色管理](./docs/screenshots/role.png)                               | ![菜单管理](docs/screenshots/menu.png)                               |
 | 部门管理                                                             | 岗位管理                                                             |
-| ![部门管理](docs/screenshots/dept.png)                               | ![岗位管理](docs/screenshots/post.png)                               |
+| ![部门管理](./docs/screenshots/dept.png)                               | ![岗位管理](docs/screenshots/post.png)                               |
 | 字典管理                                                             |                                                                      |
-| ![字典管理](docs/screenshots/dict.png)                               |                                                                      |
+| ![字典管理](./docs/screenshots/dict.png)                               |                                                                      |
 
 ## 致谢
 
