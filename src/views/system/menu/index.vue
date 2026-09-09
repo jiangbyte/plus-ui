@@ -38,7 +38,7 @@
           <div class="table-heading">
             <span class="panel-kicker">Menu Dataset</span>
             <h3>菜单列表</h3>
-            <p>支持树形加载、图标选择、级联删除和目录/菜单/按钮三级维护。</p>
+            <p>目录与菜单在列表中维护；按钮通过操作列单独打开管理窗口。</p>
           </div>
           <div class="toolbar-actions">
             <el-button v-hasPermi="['system:menu:add']" type="primary" plain icon="Plus" @click="handleAdd()">
@@ -96,7 +96,7 @@
             <dict-tag :options="sys_normal_disable" :value="scope.row.status" />
           </template>
         </el-table-column>
-        <el-table-column fixed="right" label="操作" width="180">
+        <el-table-column fixed="right" label="操作" width="200">
           <template #default="scope">
             <el-tooltip content="修改" placement="top">
               <el-button
@@ -105,6 +105,15 @@
                 type="primary"
                 icon="Edit"
                 @click="handleUpdate(scope.row)"
+              />
+            </el-tooltip>
+            <el-tooltip v-if="scope.row.menuType === MenuTypeEnum.C" content="按钮管理" placement="top">
+              <el-button
+                v-hasPermi="['system:menu:list']"
+                link
+                type="primary"
+                icon="Key"
+                @click="handleButtonManage(scope.row)"
               />
             </el-tooltip>
             <el-tooltip content="新增" placement="top">
@@ -130,7 +139,7 @@
       </el-table>
     </el-card>
 
-    <el-dialog v-model="dialog.visible" :title="dialog.title" destroy-on-close append-to-bod width="750px">
+    <el-dialog v-model="dialog.visible" :title="dialog.title" destroy-on-close append-to-body width="750px">
       <el-form ref="menuFormRef" :model="form" :rules="rules" label-width="100px">
         <el-row>
           <el-col :span="24">
@@ -142,15 +151,15 @@
                 value-key="menuId"
                 placeholder="选择上级菜单"
                 check-strictly
+                :disabled="formMode === 'button'"
               />
             </el-form-item>
           </el-col>
-          <el-col :span="24">
+          <el-col v-if="formMode !== 'button'" :span="24">
             <el-form-item label="菜单类型" prop="menuType">
               <el-radio-group v-model="form.menuType">
                 <el-radio value="M">目录</el-radio>
                 <el-radio value="C">菜单</el-radio>
-                <el-radio value="F">按钮</el-radio>
               </el-radio-group>
             </el-form-item>
           </el-col>
@@ -344,7 +353,7 @@
       </template>
     </el-dialog>
 
-    <el-dialog v-model="deleteDialog.visible" :title="deleteDialog.title" destroy-on-close append-to-bod width="750px">
+    <el-dialog v-model="deleteDialog.visible" :title="deleteDialog.title" destroy-on-close append-to-body width="750px">
       <el-tree
         ref="menuTreeRef"
         class="tree-border"
@@ -362,6 +371,63 @@
           <el-button @click="cancelCascade">取 消</el-button>
         </div>
       </template>
+    </el-dialog>
+
+    <el-dialog
+      v-model="buttonDialog.visible"
+      :title="buttonDialog.title"
+      class="button-manage-dialog"
+      destroy-on-close
+      append-to-body
+      width="860px"
+    >
+      <div class="button-manage-body">
+        <div class="button-manage-toolbar">
+          <el-button v-hasPermi="['system:menu:add']" type="primary" plain icon="Plus" @click="handleAddButton">
+            新增按钮
+          </el-button>
+        </div>
+        <el-table
+          v-loading="buttonDialog.loading"
+          class="data-table button-manage-table"
+          :data="buttonDialog.list"
+          border
+          max-height="420"
+          show-overflow-tooltip
+        >
+          <el-table-column prop="menuName" label="按钮名称" min-width="160" />
+          <el-table-column prop="orderNum" label="排序" width="80" align="center" />
+          <el-table-column prop="perms" label="权限标识" min-width="200" />
+          <el-table-column prop="status" label="状态" width="90" align="center">
+            <template #default="scope">
+              <dict-tag :options="sys_normal_disable" :value="scope.row.status" />
+            </template>
+          </el-table-column>
+          <el-table-column prop="remark" label="备注" min-width="140" />
+          <el-table-column fixed="right" label="操作" width="120" align="center">
+            <template #default="scope">
+              <el-tooltip content="修改" placement="top">
+                <el-button
+                  v-hasPermi="['system:menu:edit']"
+                  link
+                  type="primary"
+                  icon="Edit"
+                  @click="handleUpdateButton(scope.row)"
+                />
+              </el-tooltip>
+              <el-tooltip content="删除" placement="top">
+                <el-button
+                  v-hasPermi="['system:menu:remove']"
+                  link
+                  type="primary"
+                  icon="Delete"
+                  @click="handleDeleteButton(scope.row)"
+                />
+              </el-tooltip>
+            </template>
+          </el-table-column>
+        </el-table>
+      </div>
     </el-dialog>
   </div>
 </template>
@@ -389,11 +455,22 @@ const { sys_show_hide, sys_normal_disable, sys_yes_no } = toRefs<any>(
 );
 
 const menuList = ref<MenuVO[]>([]);
-const menuChildrenListMap = ref({});
-const menuExpandMap = ref({});
+const menuChildrenListMap = ref<Record<string | number, MenuVO[]>>({});
+const buttonListMap = ref<Record<string | number, MenuVO[]>>({});
+const menuExpandMap = ref<Record<string | number, any>>({});
 const { loading, withLoading } = useLoading(true);
 const { showSearch } = useSearchToggle();
 const menuOptions = ref<MenuOptionsType[]>([]);
+const formMode = ref<'menu' | 'button'>('menu');
+
+const buttonDialog = reactive({
+  visible: false,
+  loading: false,
+  title: '按钮管理',
+  parentId: undefined as string | number | undefined,
+  parentName: '',
+  list: [] as MenuVO[]
+});
 
 const queryFormRef = ref<ElFormInstance>();
 const menuFormRef = ref<ElFormInstance>();
@@ -421,7 +498,22 @@ const data = reactive<PageData<MenuForm, MenuQuery>>({
   rules: {
     menuName: [{ required: true, message: '菜单名称不能为空', trigger: 'blur' }],
     orderNum: [{ required: true, message: '菜单顺序不能为空', trigger: 'blur' }],
-    path: [{ required: true, message: '路由地址不能为空', trigger: 'blur' }]
+    path: [
+      {
+        validator: (_rule: any, value: string, callback: (error?: Error) => void) => {
+          if (data.form.menuType === MenuTypeEnum.F || formMode.value === 'button') {
+            callback();
+            return;
+          }
+          if (!value) {
+            callback(new Error('路由地址不能为空'));
+            return;
+          }
+          callback();
+        },
+        trigger: 'blur'
+      }
+    ]
   }
 });
 
@@ -495,40 +587,66 @@ const getList = async () => {
   await withLoading(async () => {
     const res = await listMenu(queryParams.value);
 
-    const tempMap = {};
-    // 存储 父菜单:子菜单列表
+    const tempMap: Record<string | number, MenuVO[]> = {};
+    const tempButtonMap: Record<string | number, MenuVO[]> = {};
+    // 存储 父菜单:子菜单列表（按钮单独归集，不进入主表树）
     for (const menu of res.data) {
       const parentId = menu.parentId;
+      if (menu.menuType === MenuTypeEnum.F) {
+        if (!tempButtonMap[parentId]) {
+          tempButtonMap[parentId] = [];
+        }
+        tempButtonMap[parentId].push(menu);
+        continue;
+      }
       if (!tempMap[parentId]) {
         tempMap[parentId] = [];
       }
       tempMap[parentId].push(menu);
     }
     // 创建一个当前所有 menuId 的 Set，用于查找父菜单是否存在于当前数据中
-    const menuIdSet = new Set();
-    // 设置有没有子菜单
+    const menuIdSet = new Set<string | number>();
+    // 设置有没有子菜单（仅目录/菜单，不含按钮）
     for (const menu of res.data) {
-      menu['hasChildren'] = tempMap[menu.menuId]?.length > 0;
+      if (menu.menuType === MenuTypeEnum.F) {
+        continue;
+      }
+      menu['hasChildren'] = (tempMap[menu.menuId]?.length || 0) > 0;
       menuIdSet.add(menu.menuId);
     }
     menuChildrenListMap.value = tempMap;
+    buttonListMap.value = tempButtonMap;
     // 找出所有父ID不在当前菜单ID集合中的菜单项，作为新的顶层菜单
-    menuList.value = res.data.filter(menu => !menuIdSet.has(menu.parentId));
+    menuList.value = res.data.filter(
+      menu => menu.menuType !== MenuTypeEnum.F && !menuIdSet.has(menu.parentId)
+    );
     // 根据新数据重新加载子菜单数据
     refreshAllExpandMenuData();
+    syncButtonDialogList();
   });
+};
+
+const syncButtonDialogList = () => {
+  if (!buttonDialog.visible || buttonDialog.parentId === undefined || buttonDialog.parentId === null) {
+    return;
+  }
+  buttonDialog.list = [...(buttonListMap.value[buttonDialog.parentId] || [])].sort(
+    (a, b) => (a.orderNum || 0) - (b.orderNum || 0)
+  );
 };
 /** 查询菜单下拉树结构 */
 const getTreeselect = async () => {
   menuOptions.value = [];
   const response = await listMenu();
+  const menusOnly = response.data.filter(menu => menu.menuType !== MenuTypeEnum.F);
   const menu: MenuOptionsType = { menuId: 0, menuName: '主类目', children: [] };
-  menu.children = handleTree<MenuOptionsType>(response.data, 'menuId');
+  menu.children = handleTree<MenuOptionsType>(menusOnly, 'menuId');
   menuOptions.value.push(menu);
 };
 /** 取消按钮 */
 const cancel = () => {
   reset();
+  formMode.value = 'menu';
   closeDialog();
 };
 /** 表单重置 */
@@ -551,14 +669,17 @@ const { resetQuery } = useSearchReset({
 /** 新增按钮操作 */
 const handleAdd = (row?: Partial<MenuVO>) => {
   reset();
+  formMode.value = 'menu';
   getTreeselect();
   row && row.menuId ? (form.value.parentId = row.menuId) : (form.value.parentId = 0);
+  form.value.menuType = MenuTypeEnum.M;
   setTitle('添加菜单');
   openDialog();
 };
 /** 修改按钮操作 */
 const handleUpdate = async (row: Partial<MenuVO>) => {
   reset();
+  formMode.value = 'menu';
   await getTreeselect();
   if (row.menuId) {
     const { data } = await getMenu(row.menuId);
@@ -571,6 +692,9 @@ const handleUpdate = async (row: Partial<MenuVO>) => {
 const submitForm = () => {
   menuFormRef.value?.validate(async (valid: boolean) => {
     if (valid) {
+      if (formMode.value === 'button') {
+        form.value.menuType = MenuTypeEnum.F;
+      }
       form.value.menuId ? await updateMenu(form.value) : await addMenu(form.value);
       modal.msgSuccess('操作成功');
       closeDialog();
@@ -581,6 +705,50 @@ const submitForm = () => {
 /** 删除按钮操作 */
 const handleDelete = async (row: Partial<MenuVO>) => {
   await modal.confirm('是否确认删除名称为"' + row.menuName + '"的数据项?');
+  await delMenu(row.menuId);
+  await getList();
+  modal.msgSuccess('删除成功');
+};
+
+/** 打开某菜单下的按钮管理 */
+const handleButtonManage = (row: Partial<MenuVO>) => {
+  if (!row.menuId) {
+    return;
+  }
+  buttonDialog.parentId = row.menuId;
+  buttonDialog.parentName = row.menuName || '';
+  buttonDialog.title = `按钮管理 - ${row.menuName || ''}`;
+  buttonDialog.visible = true;
+  syncButtonDialogList();
+};
+
+const handleAddButton = () => {
+  if (buttonDialog.parentId === undefined || buttonDialog.parentId === null) {
+    return;
+  }
+  reset();
+  formMode.value = 'button';
+  form.value.parentId = buttonDialog.parentId;
+  form.value.menuType = MenuTypeEnum.F;
+  form.value.path = '';
+  setTitle(`添加按钮 - ${buttonDialog.parentName}`);
+  openDialog();
+};
+
+const handleUpdateButton = async (row: Partial<MenuVO>) => {
+  reset();
+  formMode.value = 'button';
+  if (row.menuId) {
+    const { data: menuData } = await getMenu(row.menuId);
+    form.value = menuData;
+    form.value.menuType = MenuTypeEnum.F;
+  }
+  setTitle(`修改按钮 - ${buttonDialog.parentName}`);
+  openDialog();
+};
+
+const handleDeleteButton = async (row: Partial<MenuVO>) => {
+  await modal.confirm('是否确认删除按钮"' + row.menuName + '"?');
   await delMenu(row.menuId);
   await getList();
   modal.msgSuccess('删除成功');
@@ -644,6 +812,25 @@ onMounted(() => {
   .menu-name-text {
     min-width: 0;
   }
+}
+
+.button-manage-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  flex-shrink: 0;
+  margin-bottom: 12px;
+}
+
+.button-manage-body {
+  min-height: 0;
+}
+</style>
+
+<style lang="scss">
+.button-manage-dialog .el-dialog__body {
+  padding-top: 12px;
+  padding-bottom: 16px;
+  overflow: hidden;
 }
 </style>
 

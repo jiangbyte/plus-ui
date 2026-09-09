@@ -88,7 +88,7 @@
         <el-table-column label="客户端id" align="center" prop="clientId" />
         <el-table-column label="客户端key" align="center" prop="clientKey" />
         <el-table-column label="客户端秘钥" align="center" prop="clientSecret" />
-        <el-table-column label="授权类型" align="center">
+        <el-table-column label="授权类型" align="center" min-width="240">
           <template #default="scope">
             <dict-tag class="grant-type-tag" :options="sys_grant_type" :value="scope.row.grantTypeList" />
           </template>
@@ -464,14 +464,19 @@ onMounted(() => {
 <style lang="scss" scoped>
 .system-client-page {
   :deep(.grant-type-tag) {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
+    display: inline-flex;
+    flex-wrap: nowrap;
+    align-items: center;
     justify-content: center;
-    row-gap: 4px;
+    gap: 4px;
+    max-width: 100%;
+    overflow-x: auto;
+    vertical-align: middle;
+    white-space: nowrap;
   }
 
   :deep(.grant-type-tag .el-tag) {
+    flex-shrink: 0;
     margin-left: 0 !important;
     margin-right: 0 !important;
   }
