@@ -1,9 +1,7 @@
-/* 弹窗：遮罩模糊、居中 el-dialog 头身脚与关闭按钮；底部 .upload-container 为上传区宽度占位。 */
+/* 弹窗：居中 el-dialog 头身脚与关闭按钮；遮罩使用 Element Plus 原生样式。 */
 
 .el-overlay {
   overflow: hidden;
-  background: var(--app-overlay-mask);
-  backdrop-filter: blur(10px);
 
   .el-overlay-dialog {
     display: flex;
@@ -16,18 +14,18 @@
     .el-dialog {
       margin: 0 auto !important;
       border-radius: var(--app-radius-base);
-      box-shadow: var(--app-shadow-md);
+      box-shadow: none;
       overflow: hidden;
-      border: 1px solid var(--app-surface-border);
+      border: none;
       background: var(--app-surface-bg);
 
       .el-dialog__header {
         position: relative;
-        padding: 18px 20px 14px;
+        padding: 14px 20px;
         box-sizing: border-box;
         border-bottom: 1px solid var(--app-surface-border);
         margin-right: 0;
-        background: var(--app-elevated-soft-bg);
+        background: transparent;
       }
 
       .el-dialog__title {
@@ -41,12 +39,12 @@
       .el-dialog__headerbtn {
         position: absolute;
         top: 50%;
-        right: 16px;
+        right: 12px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 32px;
-        height: 32px;
+        width: 28px;
+        height: 28px;
         padding: 0;
         margin: 0;
         border: 0;
@@ -71,7 +69,7 @@
       }
 
       .el-dialog__body {
-        padding: 18px 20px 12px !important;
+        padding: 20px 20px 8px !important;
       }
 
       .el-dialog__footer {
@@ -79,7 +77,7 @@
         align-items: center;
         justify-content: flex-end;
         gap: 8px;
-        padding: 14px 20px 20px;
+        padding: 12px 20px 16px;
         border-top: 1px solid var(--app-surface-border);
       }
     }

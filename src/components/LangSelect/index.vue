@@ -1,5 +1,5 @@
 <template>
-  <el-dropdown trigger="click" @command="handleLanguageChange">
+  <el-dropdown trigger="click" popper-class="lang-select-dropdown" @command="handleLanguageChange">
     <div class="lang-select--style">
       <svg-icon icon-class="language" />
     </div>
@@ -43,5 +43,21 @@ const handleLanguageChange = (lang: any) => {
     width: 16px;
     height: 16px;
   }
+}
+</style>
+
+<style lang="scss">
+.lang-select-dropdown.el-dropdown__popper {
+  padding: 0 !important;
+  min-width: 96px !important;
+}
+
+.lang-select-dropdown .el-dropdown-menu {
+  min-width: 96px;
+  padding: 4px 0;
+}
+
+.lang-select-dropdown .el-dropdown-menu__item {
+  padding: 0 16px;
 }
 </style>

@@ -14,9 +14,13 @@
 .el-select__popper.el-popper,
 .el-autocomplete__popper.el-popper,
 .el-cascader__dropdown,
-.el-dropdown__popper.el-popper,
 .el-popover.el-popper {
   padding: 8px;
+}
+
+/* dropdown 自身已有 menu 内边距，popper 再 padding 会套盒 */
+.el-dropdown__popper.el-popper {
+  padding: 0;
 }
 
 .el-select-dropdown__list,

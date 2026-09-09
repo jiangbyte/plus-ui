@@ -1,15 +1,18 @@
 /* 下拉菜单面板项样式；日期范围分隔符；折叠菜单隐藏箭头；dropdown-link 主色。 */
 
 .el-dropdown-menu {
-  padding: 8px;
+  padding: 4px 0;
+  margin: 0;
   border-radius: 0;
-  border: 1px solid var(--app-surface-border);
-  background: var(--app-surface-bg);
-  box-shadow: var(--app-shadow-md);
+  border: none;
+  background: transparent;
+  box-shadow: none;
 
   .el-dropdown-menu__item {
-    min-height: 36px;
-    margin: 2px 0;
+    min-height: 32px;
+    line-height: 32px;
+    margin: 0;
+    padding: 0 16px;
     border-radius: 0;
     color: var(--app-text-title);
     transition:
@@ -24,18 +27,21 @@
   }
 
   .el-dropdown-menu__item.is-disabled {
-    opacity: 0.5;
+    color: var(--app-text-muted);
+    opacity: 1;
+    background: transparent !important;
+    cursor: default;
   }
 
   .el-dropdown-menu__item--divided {
-    margin-top: 8px;
+    margin-top: 4px;
     position: relative;
     border-top: none;
 
     &::before {
-      left: 2px;
-      right: 2px;
-      top: -6px;
+      left: 8px;
+      right: 8px;
+      top: -3px;
       width: auto;
       background: var(--app-surface-border);
     }

@@ -3,7 +3,6 @@
 
 // --- 卡片、弹层、抽屉及常见 popper 容器的圆角/边线/阴影 ---
 .el-card,
-.el-dialog,
 .el-drawer,
 .el-popover.el-popper,
 .el-dropdown__popper .el-dropdown-menu,
@@ -11,6 +10,12 @@
 .el-select__popper.el-popper {
   border-radius: var(--app-radius-base);
   border-color: var(--app-surface-border);
+  box-shadow: none;
+}
+
+.el-dialog {
+  border-radius: var(--app-radius-base);
+  border: none;
   box-shadow: none;
 }
 

@@ -386,11 +386,11 @@ onMounted(() => {
 }
 
 .register-form .el-input {
-  height: 48px;
+  height: 44px;
 }
 
 .register-form .input-icon {
-  height: 46px;
+  height: 16px;
   width: 14px;
   margin-left: 0;
 }
@@ -417,7 +417,7 @@ onMounted(() => {
 }
 
 .register-code {
-  height: 48px;
+  height: 44px;
   box-sizing: border-box;
   border-radius: 0;
   overflow: hidden;
@@ -446,16 +446,32 @@ onMounted(() => {
 }
 
 .register-form :deep(.el-input__wrapper) {
-  min-height: 48px;
+  height: 44px;
+  min-height: 44px;
+  max-height: 44px;
+  padding-top: 0;
+  padding-bottom: 0;
   background-color: var(--el-bg-color);
   border-radius: 0;
   box-shadow: 0 0 0 1px var(--app-surface-border) inset;
+  box-sizing: border-box;
+}
+
+.register-form :deep(.el-input__inner) {
+  height: 44px;
+  line-height: 44px;
+  font-size: 14px;
+}
+
+.register-form :deep(input[type='password']) {
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 44px;
+  letter-spacing: 0.12em;
 }
 
 .register-form :deep(.el-input__wrapper.is-focus) {
-  box-shadow:
-    0 0 0 1px rgba(53, 109, 255, 0.24) inset,
-    0 0 0 4px rgba(53, 109, 255, 0.12);
+  box-shadow: 0 0 0 1px var(--app-accent-strong) inset;
 }
 
 .el-register-footer {
@@ -471,7 +487,7 @@ onMounted(() => {
 }
 
 .register-code-img {
-  height: 48px;
+  height: 44px;
   padding-left: 0;
 }
 

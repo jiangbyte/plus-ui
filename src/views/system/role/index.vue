@@ -169,7 +169,7 @@
 
     <el-dialog v-model="dialog.visible" :title="dialog.title" width="720px" append-to-body>
       <el-form ref="roleFormRef" :model="form" :rules="rules" label-width="100px" class="dialog-grid-form">
-        <el-row :gutter="8">
+        <el-row :gutter="20">
           <el-col :span="12">
             <el-form-item label="角色名称" prop="roleName">
               <el-input v-model="form.roleName" placeholder="请输入角色名称" />
@@ -1057,7 +1057,7 @@ onMounted(() => {
 
 .dialog-grid-form {
   :deep(.el-form-item) {
-    margin-bottom: 16px;
+    margin-bottom: 18px !important;
   }
 
   :deep(.el-input-number.w-full) {

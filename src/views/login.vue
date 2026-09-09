@@ -343,9 +343,35 @@ onMounted(() => {
 }
 
 .login-form .input-icon {
-  height: 42px;
+  height: 16px;
   width: 14px;
   margin-left: 0;
+}
+
+.login-form :deep(.el-input__wrapper) {
+  height: 44px;
+  min-height: 44px;
+  max-height: 44px;
+  padding-top: 0;
+  padding-bottom: 0;
+  background-color: transparent;
+  border-radius: 0;
+  box-shadow: 0 0 0 1px var(--app-surface-border) inset;
+  box-sizing: border-box;
+}
+
+.login-form :deep(.el-input__inner) {
+  height: 44px;
+  line-height: 44px;
+  font-size: 14px;
+}
+
+/* 浏览器密码框默认字体会撑高输入框，强制与账号框一致 */
+.login-form :deep(input[type='password']) {
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 44px;
+  letter-spacing: 0.12em;
 }
 
 .captcha-row {
@@ -397,13 +423,6 @@ onMounted(() => {
   box-shadow: none;
 }
 
-.login-form :deep(.el-input__wrapper) {
-  min-height: 44px;
-  background-color: transparent;
-  border-radius: 0;
-  box-shadow: 0 0 0 1px var(--app-surface-border) inset;
-}
-
 .login-form :deep(.el-input__wrapper.is-focus) {
   box-shadow: 0 0 0 1px var(--app-accent-strong) inset;
 }
@@ -414,13 +433,14 @@ onMounted(() => {
 
 .login-form :deep(.el-button.is-circle) {
   background: transparent;
-  border: 1px solid var(--app-surface-border);
+  border: none;
   color: var(--app-text-muted);
+  box-shadow: none;
 }
 
 .login-form :deep(.el-button.is-circle:hover) {
-  background: rgba(53, 109, 255, 0.08);
-  border-color: rgba(53, 109, 255, 0.2);
+  background: transparent;
+  border: none;
   color: var(--app-accent-strong);
 }
 
