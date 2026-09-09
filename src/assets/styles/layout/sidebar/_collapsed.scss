@@ -30,7 +30,7 @@
       &.is-active {
         background-color: var(--side-menu-active-bg) !important;
         color: var(--side-menu-active-text) !important;
-        box-shadow: inset 3px 0 0 var(--side-menu-active-line);
+        box-shadow: none;
       }
 
       .el-tooltip {
@@ -69,7 +69,8 @@
       &.is-active .el-sub-menu__title,
       &.is-active .el-sub-menu__title.el-tooltip__trigger {
         background-color: var(--side-menu-active-bg) !important;
-        box-shadow: inset 3px 0 0 var(--side-menu-active-line);
+        color: var(--side-menu-active-text) !important;
+        box-shadow: none;
       }
 
       & > .el-sub-menu__title {

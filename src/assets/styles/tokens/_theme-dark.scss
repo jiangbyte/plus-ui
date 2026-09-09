@@ -187,8 +187,9 @@ html.dark {
   }
 
   // --- tags-view 与 app 壳变量（暗色） ---
-  --tags-view-active-bg: var(--el-color-primary-dark-6);
-  --tags-view-active-border-color: var(--el-color-primary-light-2);
+  --tags-view-active-bg: rgba(22, 119, 255, 0.18);
+  --tags-view-active-border-color: var(--el-color-primary-light-5);
+  --tags-view-active-text: var(--el-color-primary-light-3);
 
   --app-shadow-sm: none;
   --app-shadow-md: none;
@@ -202,8 +203,8 @@ html.dark {
   --app-navbar-bg: #111827;
   --app-navbar-border: rgba(71, 85, 105, 0.48);
   --app-navbar-shadow: none;
-  --app-accent-soft: rgba(64, 158, 255, 0.14);
-  --app-accent-strong: #60a5fa;
+  --app-accent-soft: rgba(22, 119, 255, 0.16);
+  --app-accent-strong: #1677ff;
   --app-text-title: #f3f7ff;
   --app-text-muted: #8ea0bd;
   --app-overlay-mask: rgba(2, 6, 23, 0.58);

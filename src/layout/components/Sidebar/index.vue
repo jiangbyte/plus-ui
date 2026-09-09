@@ -46,8 +46,8 @@ const activeMenu = computed(() => {
   return path;
 });
 
-const bgColor = computed(() => (sideTheme.value === 'theme-dark' ? '#111827' : '#ffffff'));
-const textColor = computed(() => (sideTheme.value === 'theme-dark' ? '#e5edf8' : '#1f2937'));
+const bgColor = computed(() => (sideTheme.value === 'theme-dark' ? '#001529' : '#ffffff'));
+const textColor = computed(() => (sideTheme.value === 'theme-dark' ? 'rgba(255, 255, 255, 0.65)' : '#1f2937'));
 const menuStyle = computed(() => ({
   backgroundColor: bgColor.value,
   '--el-menu-bg-color': bgColor.value,

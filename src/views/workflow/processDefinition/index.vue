@@ -711,7 +711,7 @@ const handleExportDef = () => {
   height: 30px !important;
   padding: 0 10px !important;
   border-radius: 0 !important;
-  background: rgba(53, 109, 255, 0.08) !important;
+  background: transparent !important;
 }
 
 .process-action-group :deep(.el-button.is-link + .el-button.is-link) {

@@ -1,13 +1,18 @@
 /* Search panel, table actions, and responsive panel shells. */
 
-// --- 表格工具列链接按钮（全局） ---
+// --- 表格工具列链接按钮（全局）：纯图标，无底色 ---
 .data-table .el-button.is-link {
   width: 28px !important;
   height: 28px !important;
   min-width: 28px !important;
   padding: 0 !important;
   border-radius: var(--app-radius-md) !important;
-  background: var(--app-accent-soft) !important;
+  background: transparent !important;
+}
+
+.data-table .el-button.is-link:hover,
+.data-table .el-button.is-link:focus {
+  background: transparent !important;
 }
 
 .data-table .el-button.is-link + .el-button.is-link {

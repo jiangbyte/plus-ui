@@ -1,11 +1,16 @@
 // 处理主题样式
 export const handleThemeStyle = (theme: string) => {
   document.documentElement.style.setProperty('--el-color-primary', theme);
+  document.documentElement.style.setProperty('--app-accent-strong', theme);
   for (let i = 1; i <= 9; i++) {
     document.documentElement.style.setProperty(`--el-color-primary-light-${i}`, `${getLightColor(theme, i / 10)}`);
   }
   for (let i = 1; i <= 9; i++) {
     document.documentElement.style.setProperty(`--el-color-primary-dark-${i}`, `${getDarkColor(theme, i / 10)}`);
+  }
+  const soft = hexToRgb(theme);
+  if (soft.length === 3) {
+    document.documentElement.style.setProperty('--app-accent-soft', `rgba(${soft[0]}, ${soft[1]}, ${soft[2]}, 0.08)`);
   }
 };
 

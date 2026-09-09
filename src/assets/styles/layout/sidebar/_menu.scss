@@ -29,8 +29,16 @@
       }
     }
 
-    & .theme-dark .is-active > .el-sub-menu__title {
-      color: var(--side-menu-active-text) !important;
+    // 父级展开且含激活子项：主题色文字，非实心底
+    & .is-active > .el-sub-menu__title {
+      color: var(--side-menu-parent-active-text) !important;
+      background: transparent !important;
+
+      .svg-icon,
+      .el-sub-menu__icon-arrow {
+        color: var(--side-menu-parent-active-text) !important;
+        fill: currentColor;
+      }
     }
 
     & .nest-menu .el-sub-menu > .el-sub-menu__title,
@@ -47,49 +55,9 @@
       }
     }
 
-    & .theme-dark .nest-menu .el-sub-menu > .el-sub-menu__title,
-    & .theme-dark .el-sub-menu .el-menu-item {
-      border-radius: var(--app-radius-md);
-      height: 40px;
-      margin: 3px 8px;
-      background: transparent !important;
-
-      &.is-active {
-        background: var(--side-menu-active-bg) !important;
-        color: var(--side-menu-active-text) !important;
-        box-shadow:
-          inset 3px 0 0 var(--side-menu-active-line),
-          inset 0 0 0 1px var(--side-menu-active-border);
-      }
-
-      &:not(.is-active):hover {
-        background-color: var(--side-menu-hover-bg) !important;
-        color: var(--side-menu-hover-text) !important;
-      }
-    }
-
-    & .theme-dark .nest-menu .el-sub-menu > .el-sub-menu__title,
-    & .theme-dark .el-menu-item {
-      border-radius: var(--app-radius-md);
-      height: 40px;
-      margin: 3px 8px;
-      background: transparent !important;
-
-      &.is-active {
-        background: var(--side-menu-active-bg) !important;
-        color: var(--side-menu-active-text) !important;
-        box-shadow:
-          inset 3px 0 0 var(--side-menu-active-line),
-          inset 0 0 0 1px var(--side-menu-active-border);
-      }
-
-      &:not(.is-active):hover {
-        background-color: var(--side-menu-hover-bg) !important;
-        color: var(--side-menu-hover-text) !important;
-      }
-    }
-
-    & .nest-menu .el-sub-menu > .el-sub-menu__title,
+    & .theme-dark .el-sub-menu .el-menu-item,
+    & .theme-dark .el-menu-item,
+    & .el-sub-menu .el-menu-item,
     & .el-menu-item {
       border-radius: var(--app-radius-md);
       height: 40px;
@@ -99,9 +67,12 @@
       &.is-active {
         background: var(--side-menu-active-bg) !important;
         color: var(--side-menu-active-text) !important;
-        box-shadow:
-          inset 3px 0 0 var(--side-menu-active-line),
-          inset 0 0 0 1px var(--side-menu-active-border);
+        box-shadow: none;
+
+        .svg-icon {
+          color: var(--side-menu-active-text) !important;
+          fill: currentColor;
+        }
       }
 
       &:not(.is-active):hover {

@@ -55,7 +55,6 @@
 
     <span class="tags-action-btn tags-refresh-btn" title="刷新页面" @click="refreshSelectedTag(selectedDropdownTag)">
       <el-icon><RefreshRight /></el-icon>
-      <span>刷新</span>
     </span>
 
     <ul v-show="visible" :style="{ left: left + 'px', top: top + 'px' }" class="contextmenu">
@@ -162,8 +161,9 @@ const isActive = (currentRoute: RouteLocationNormalized): boolean => {
 const activeStyle = (tag: RouteLocationNormalized) => {
   if (!isActive(tag)) return {};
   return {
-    backgroundColor: 'var(--tags-view-active-bg)',
-    borderColor: 'var(--tags-view-active-border-color)'
+    'background-color': 'var(--tags-view-active-bg)',
+    'border-color': 'var(--tags-view-active-border-color)',
+    color: 'var(--tags-view-active-text)'
   };
 };
 
@@ -541,7 +541,7 @@ onBeforeUnmount(() => {
       cursor: pointer;
       height: 26px;
       line-height: 25px;
-      background-color: var(--app-surface-bg);
+      background-color: var(--el-fill-color-light);
       border: 1px solid var(--app-surface-border);
       color: var(--el-text-color-regular);
       padding: 0 8px;
@@ -550,16 +550,13 @@ onBeforeUnmount(() => {
       margin-top: 4px;
       border-radius: var(--app-radius-md);
       transition:
-        box-shadow 0.2s ease,
-        transform 0.2s ease,
+        background-color 0.2s ease,
         border-color 0.2s ease,
         color 0.2s ease;
 
       &:hover {
         color: var(--el-color-primary);
         border-color: var(--el-color-primary-light-5);
-        box-shadow: var(--app-shadow-sm);
-        transform: none;
       }
 
       &:first-of-type {
@@ -570,20 +567,18 @@ onBeforeUnmount(() => {
         margin-right: 10px;
       }
 
+      &.has-icon {
+        gap: 4px;
+      }
+
       &.active {
         background-color: var(--tags-view-active-bg);
-        color: var(--el-color-white);
+        color: var(--tags-view-active-text);
         border-color: var(--tags-view-active-border-color);
 
-        &::before {
-          content: '';
-          background: var(--el-color-white);
-          display: inline-block;
-          width: 8px;
-          height: 8px;
-          border-radius: 0;
-          position: relative;
-          margin-right: 5px;
+        .el-icon-close:hover {
+          background-color: var(--el-color-primary);
+          color: #fff;
         }
       }
     }
@@ -594,7 +589,7 @@ onBeforeUnmount(() => {
   }
 
   .tags-view-item-title {
-    margin-left: 4px;
+    margin-left: 0;
     margin-right: 3px;
   }
 
@@ -613,33 +608,25 @@ onBeforeUnmount(() => {
     gap: 4px;
     min-width: $btn-width;
     height: 26px;
-    padding: 0 8px;
+    padding: 0;
     cursor: pointer;
     color: var(--app-text-muted);
     user-select: none;
-    background-color: var(--app-surface-bg);
-    border: 1px solid var(--app-surface-border);
+    background: transparent;
+    border: none;
     border-radius: var(--app-radius-md);
-    transition:
-      box-shadow 0.2s ease,
-      transform 0.2s ease,
-      border-color 0.2s ease,
-      color 0.2s ease;
+    transition: color 0.2s ease;
 
     &:hover {
-      background: $btn-hover-bg;
-      color: $btn-hover-color;
-      border-color: var(--el-color-primary-light-5);
-      box-shadow: var(--app-shadow-sm);
-      transform: none;
+      background: transparent;
+      color: var(--el-color-primary);
     }
   }
 
   .tags-refresh-btn {
-    width: auto;
-    font-size: 12px;
+    width: $btn-width;
     margin-top: 4px;
-    margin-left: 8px;
+    margin-left: 4px;
     margin-right: 8px;
   }
 

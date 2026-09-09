@@ -18,6 +18,10 @@ export const useSettingsStore = defineStore('setting', () => {
     navType: defaultSettings.navType,
     fullHeightTable: defaultSettings.fullHeightTable
   });
+  // 旧默认主题色迁移到新品牌色
+  if (String(storageSetting.value.theme).toLowerCase() === '#409eff') {
+    storageSetting.value.theme = defaultSettings.theme;
+  }
   const title = ref<string>(defaultSettings.title);
   const theme = ref<string>(storageSetting.value.theme);
   const sideTheme = ref<string>(storageSetting.value.sideTheme);

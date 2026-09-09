@@ -112,23 +112,20 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 :deep(.el-button.is-circle) {
-  width: 38px;
-  height: 38px;
+  width: 28px;
+  height: 28px;
   border-radius: 0;
-  background: var(--app-elevated-soft-bg);
-  border: 1px solid var(--app-surface-border);
+  background: transparent;
+  border: none;
   color: var(--app-text-muted);
-  transition:
-    transform 0.25s ease,
-    border-color 0.25s ease,
-    color 0.25s ease,
-    background 0.25s ease;
+  transition: color 0.2s ease;
 
-  &:hover {
+  &:hover,
+  &:focus {
     transform: none;
     color: var(--app-accent-strong);
-    background: var(--app-accent-soft);
-    border-color: rgba(53, 109, 255, 0.2);
+    background: transparent;
+    border-color: transparent;
   }
 }
 
