@@ -239,10 +239,7 @@ onMounted(() => {
   align-items: center;
   justify-content: center;
   padding: 40px 24px 88px;
-  background:
-    radial-gradient(circle at 12% 12%, rgba(53, 109, 255, 0.22), transparent 24%),
-    radial-gradient(circle at 88% 18%, rgba(14, 165, 233, 0.18), transparent 24%),
-    linear-gradient(135deg, #071120 0%, #0f1b33 42%, #15345f 100%);
+  background: #0f1b33;
 }
 
 .register-shell {
@@ -255,9 +252,9 @@ onMounted(() => {
 
 .register-brand,
 .register-form {
-  border-radius: 28px;
+  border-radius: 0;
   border: 1px solid rgba(255, 255, 255, 0.14);
-  box-shadow: 0 30px 80px rgba(2, 8, 23, 0.32);
+  box-shadow: none;
   backdrop-filter: blur(18px);
 }
 
@@ -267,9 +264,7 @@ onMounted(() => {
   flex-direction: column;
   justify-content: space-between;
   color: #eef4ff;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
-    linear-gradient(135deg, rgba(53, 109, 255, 0.32), rgba(15, 23, 42, 0.24));
+  background: #15345f;
 }
 
 .brand-pill {
@@ -277,7 +272,7 @@ onMounted(() => {
   align-items: center;
   width: fit-content;
   padding: 8px 14px;
-  border-radius: 999px;
+  border-radius: 0;
   background: rgba(255, 255, 255, 0.12);
   color: rgba(255, 255, 255, 0.9);
   font-size: 12px;
@@ -309,7 +304,7 @@ onMounted(() => {
 
 .highlight-chip {
   padding: 9px 14px;
-  border-radius: 999px;
+  border-radius: 0;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.12);
   color: #f8fbff;
@@ -324,7 +319,7 @@ onMounted(() => {
 
 .metric-card {
   padding: 18px 16px;
-  border-radius: 20px;
+  border-radius: 0;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
@@ -384,7 +379,7 @@ onMounted(() => {
     line-height: 0;
     color: var(--app-text-muted);
     padding: 10px;
-    border-radius: 14px;
+    border-radius: 0;
     background: var(--app-elevated-soft-bg);
     border: 1px solid var(--app-surface-border);
   }
@@ -424,7 +419,7 @@ onMounted(() => {
 .register-code {
   height: 48px;
   box-sizing: border-box;
-  border-radius: 16px;
+  border-radius: 0;
   overflow: hidden;
   background: var(--el-bg-color);
   border: 1px solid var(--app-surface-border);
@@ -446,14 +441,14 @@ onMounted(() => {
 .submit-button {
   width: 100%;
   height: 50px;
-  border-radius: 16px;
-  box-shadow: 0 18px 34px rgba(53, 109, 255, 0.22);
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .register-form :deep(.el-input__wrapper) {
   min-height: 48px;
   background-color: var(--el-bg-color);
-  border-radius: 16px;
+  border-radius: 0;
   box-shadow: 0 0 0 1px var(--app-surface-border) inset;
 }
 

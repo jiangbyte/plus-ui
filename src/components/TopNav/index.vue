@@ -211,7 +211,7 @@ onMounted(() => {
   margin: 0 !important;
   padding: 0 18px !important;
   border: 1px solid transparent !important;
-  border-radius: 13px;
+  border-radius: 0;
   color: var(--topbar-pill-text) !important;
   background: transparent !important;
   transition:
@@ -224,15 +224,15 @@ onMounted(() => {
 
 #app .mix-topnav-menu.el-menu--horizontal > .el-menu-item:hover,
 #app .mix-topnav-menu.el-menu--horizontal > .el-sub-menu > .el-sub-menu__title:hover {
-  background: linear-gradient(180deg, var(--topbar-pill-hover-bg), var(--topbar-pill-bg)) !important;
+  background: var(--topbar-pill-hover-bg) !important;
   border-color: var(--topbar-pill-border) !important;
   color: v-bind(theme) !important;
-  transform: translateY(-1px);
+  transform: none;
 }
 
 #app .mix-topnav-menu.el-menu--horizontal > .el-menu-item.is-active,
 #app .mix-topnav-menu.el-menu--horizontal > .el-sub-menu.is-active > .el-sub-menu__title {
-  background: linear-gradient(180deg, var(--topbar-pill-hover-bg), var(--topbar-pill-active-bg)) !important;
+  background: var(--topbar-pill-active-bg) !important;
   border-color: var(--topbar-pill-active-border) !important;
   color: v-bind(theme) !important;
   box-shadow: none !important;
@@ -302,7 +302,7 @@ onMounted(() => {
   line-height: 38px;
   padding: 0 14px !important;
   margin: 0 0 4px !important;
-  border-radius: 12px;
+  border-radius: 0;
   color: var(--app-text-title) !important;
   background: transparent !important;
   transition:
@@ -326,7 +326,7 @@ onMounted(() => {
 
 .mix-topnav-popper .el-menu--popup .el-menu-item.is-active,
 .mix-topnav-popper .el-menu--popup .el-sub-menu.is-active > .el-sub-menu__title {
-  background: linear-gradient(180deg, rgba(64, 158, 255, 0.16), rgba(64, 158, 255, 0.1)) !important;
+  background: rgba(64, 158, 255, 0.12) !important;
   color: v-bind(theme) !important;
   box-shadow: inset 0 0 0 1px rgba(64, 158, 255, 0.12);
 }
@@ -364,10 +364,8 @@ html.dark .mix-topnav-menu.el-menu--horizontal {
 
 html.dark .mix-topnav-popper .el-menu--popup {
   border-color: rgba(71, 85, 105, 0.34);
-  background: linear-gradient(180deg, rgba(15, 23, 42, 0.98), rgba(30, 41, 59, 0.94)) !important;
-  box-shadow:
-    0 20px 42px rgba(0, 0, 0, 0.34),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  background: #111827 !important;
+  box-shadow: none;
 }
 
 html.dark .mix-topnav-popper .el-menu--popup .el-menu-item,
@@ -382,7 +380,7 @@ html.dark .mix-topnav-popper .el-menu--popup .el-sub-menu__title:hover {
 
 html.dark .mix-topnav-popper .el-menu--popup .el-menu-item.is-active,
 html.dark .mix-topnav-popper .el-menu--popup .el-sub-menu.is-active > .el-sub-menu__title {
-  background: linear-gradient(180deg, rgba(37, 99, 235, 0.28), rgba(59, 130, 246, 0.18)) !important;
+  background: rgba(37, 99, 235, 0.22) !important;
   box-shadow: inset 0 0 0 1px rgba(96, 165, 250, 0.16);
 }
 </style>

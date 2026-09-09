@@ -1,33 +1,22 @@
 <template>
   <div class="login">
+    <div class="login-logo">{{ title }}</div>
+
     <div class="login-shell">
       <section class="login-brand">
-        <span class="brand-pill">Plus UI Workspace</span>
-        <h1 class="brand-title">企业级后台管理系统</h1>
-        <p class="brand-desc">
-          真正面向企业级的应用框架 组件化 模块化 轻耦合 高扩展 针对企业痛点 业界一流技术栈
-          <br />
-          重写 RuoYi-Vue 所有功能 集成 Sa-Token、Mybatis-Plus、WarmFlow、SpringDoc、Hutool、OSS 定期同步。
-        </p>
-        <div class="brand-highlights">
-          <span v-for="item in highlights" :key="item" class="highlight-chip">{{ item }}</span>
-        </div>
-        <div class="brand-metrics">
-          <article v-for="item in quickStats" :key="item.label" class="metric-card">
-            <strong>{{ item.value }}</strong>
-            <span>{{ item.label }}</span>
-          </article>
+        <div class="brand-copy">
+          <h1 class="brand-title">企业级后台管理系统</h1>
+          <p class="brand-desc">
+            真正面向企业级的应用框架，组件化、模块化、轻耦合、高扩展，集成 Sa-Token、Mybatis-Plus、WarmFlow 等主流技术栈。
+          </p>
         </div>
       </section>
 
       <el-form ref="loginRef" :model="loginForm" :rules="loginRules" class="login-form">
         <div class="title-box">
-          <div>
-            <p class="eyebrow">Workspace Sign In</p>
-            <h3 class="title">{{ title }}</h3>
-            <p class="subtitle">使用当前账号体系登录到业务工作台。</p>
-          </div>
-          <lang-select />
+          <h3 class="title">欢迎登录</h3>
+          <p class="subtitle">{{ title }}</p>
+          <lang-select class="lang-switch" />
         </div>
 
         <el-form-item prop="username">
@@ -71,10 +60,11 @@
         </el-form-item>
 
         <div class="form-meta">
-          <el-checkbox v-model="loginForm.rememberMe">{{ $t('login.rememberPassword') }}</el-checkbox>
           <router-link v-if="register" class="link-type" :to="'/register'">
             {{ $t('login.switchRegisterPage') }}
           </router-link>
+          <span v-else></span>
+          <el-checkbox v-model="loginForm.rememberMe">{{ $t('login.rememberPassword') }}</el-checkbox>
         </div>
 
         <div class="social-panel">
@@ -124,12 +114,6 @@ import { useUserStore } from '@/store/modules/user';
 
 const title = import.meta.env.VITE_APP_TITLE;
 const currentYear = new Date().getFullYear();
-const quickStats = [
-  { label: '细粒度权限管理', value: '动态权限控制' },
-  { label: '主流技术栈', value: '全栈技术集成' },
-  { label: 'UI样式', value: '卡片式' }
-];
-const highlights = ['技术栈全面升级', '动态菜单', '多主题布局', '深浅色主题'];
 const userStore = useUserStore();
 const router = useRouter();
 const { t } = useI18n();
@@ -250,168 +234,116 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .login {
+  position: relative;
   min-height: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 40px 24px 88px;
-  background:
-    radial-gradient(circle at 12% 12%, rgba(53, 109, 255, 0.22), transparent 24%),
-    radial-gradient(circle at 88% 18%, rgba(14, 165, 233, 0.18), transparent 24%),
-    linear-gradient(135deg, #071120 0%, #0f1b33 42%, #15345f 100%);
+  padding: 56px 24px 72px;
+  background: #eef4fb;
+}
+
+.login-logo {
+  position: absolute;
+  top: 20px;
+  left: 28px;
+  color: var(--app-accent-strong);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
 }
 
 .login-shell {
-  width: min(1180px, 100%);
+  width: min(1080px, 100%);
+  min-height: 560px;
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(360px, 440px);
-  gap: 26px;
-  align-items: stretch;
-}
-
-.login-brand,
-.login-form {
-  border-radius: 28px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  box-shadow: 0 30px 80px rgba(2, 8, 23, 0.32);
-  backdrop-filter: blur(18px);
+  grid-template-columns: minmax(0, 1.25fr) minmax(340px, 0.9fr);
+  overflow: hidden;
+  border: 1px solid var(--app-surface-border);
+  background: var(--app-surface-bg);
 }
 
 .login-brand {
-  padding: 42px;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  color: #eef4ff;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
-    linear-gradient(135deg, rgba(53, 109, 255, 0.32), rgba(15, 23, 42, 0.24));
+  align-items: center;
+  justify-content: center;
+  padding: 48px 40px;
+  color: #fff;
+  background: #0f5fad;
 }
 
-.brand-pill {
-  display: inline-flex;
-  align-items: center;
-  width: fit-content;
-  padding: 8px 14px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.12);
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+.brand-copy {
+  max-width: 420px;
+  text-align: center;
 }
 
 .brand-title {
-  margin: 22px 0 14px;
-  font-size: clamp(34px, 4vw, 52px);
-  line-height: 1.08;
-  letter-spacing: -0.03em;
+  margin: 0 0 14px;
+  font-size: clamp(28px, 3.2vw, 40px);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  font-weight: 700;
 }
 
 .brand-desc {
   margin: 0;
-  max-width: 580px;
-  color: rgba(226, 232, 240, 0.88);
-  font-size: 15px;
-  line-height: 1.8;
-}
-
-.brand-highlights {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin: 28px 0 34px;
-}
-
-.highlight-chip {
-  padding: 9px 14px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #f8fbff;
-  font-size: 13px;
-}
-
-.brand-metrics {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.metric-card {
-  padding: 18px 16px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-
-  strong {
-    font-size: 24px;
-    color: #fff;
-  }
-
-  span {
-    color: rgba(226, 232, 240, 0.72);
-    font-size: 13px;
-  }
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 14px;
+  line-height: 1.7;
 }
 
 .login-form {
+  position: relative;
   width: 100%;
-  padding: 34px 30px 26px;
-  z-index: 1;
-  background: var(--app-surface-bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 42px 40px 36px;
+  background: #fff;
 }
 
 .title-box {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 12px;
+  position: relative;
   margin-bottom: 28px;
-
-  .eyebrow {
-    margin: 0 0 8px;
-    color: var(--app-accent-strong);
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
+  text-align: center;
 
   .title {
     margin: 0;
-    color: var(--app-text-title);
+    color: var(--app-accent-strong);
     font-weight: 700;
-    font-size: 30px;
-    letter-spacing: -0.03em;
+    font-size: 28px;
+    letter-spacing: -0.02em;
   }
 
   .subtitle {
     margin: 8px 0 0;
     color: var(--app-text-muted);
-    font-size: 14px;
-    line-height: 1.7;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .lang-switch {
+    position: absolute;
+    top: 0;
+    right: 0;
   }
 
   :deep(.lang-select--style) {
     line-height: 0;
     color: var(--app-text-muted);
-    padding: 10px;
-    border-radius: 14px;
-    background: var(--app-elevated-soft-bg);
-    border: 1px solid var(--app-surface-border);
+    padding: 8px;
+    border: none;
+    background: transparent;
   }
 }
 
 .login-form .el-input {
-  height: 48px;
+  height: 44px;
 }
 
 .login-form .input-icon {
-  height: 46px;
+  height: 42px;
   width: 14px;
   margin-left: 0;
 }
@@ -429,25 +361,22 @@ onMounted(() => {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  margin: -2px 0 18px;
+  margin: -2px 0 16px;
 }
 
 .social-panel {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
-  padding: 14px 16px;
-  margin-bottom: 22px;
-  border-radius: 20px;
-  background: var(--app-elevated-soft-bg);
-  border: 1px solid var(--app-surface-border);
+  gap: 12px;
+  margin-bottom: 18px;
 }
 
 .social-label {
   color: var(--app-text-muted);
   font-size: 13px;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .social-actions {
@@ -463,22 +392,20 @@ onMounted(() => {
 
 .submit-button {
   width: 100%;
-  height: 50px;
-  border-radius: 16px;
-  box-shadow: 0 18px 34px rgba(53, 109, 255, 0.22);
+  height: 46px;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .login-form :deep(.el-input__wrapper) {
-  min-height: 48px;
-  background-color: var(--el-bg-color);
-  border-radius: 16px;
+  min-height: 44px;
+  background-color: transparent;
+  border-radius: 0;
   box-shadow: 0 0 0 1px var(--app-surface-border) inset;
 }
 
 .login-form :deep(.el-input__wrapper.is-focus) {
-  box-shadow:
-    0 0 0 1px rgba(53, 109, 255, 0.24) inset,
-    0 0 0 4px rgba(53, 109, 255, 0.12);
+  box-shadow: 0 0 0 1px var(--app-accent-strong) inset;
 }
 
 .login-form :deep(.el-checkbox__label) {
@@ -486,21 +413,20 @@ onMounted(() => {
 }
 
 .login-form :deep(.el-button.is-circle) {
-  background: var(--app-elevated-soft-bg);
+  background: transparent;
   border: 1px solid var(--app-surface-border);
   color: var(--app-text-muted);
 }
 
 .login-form :deep(.el-button.is-circle:hover) {
-  background: rgba(53, 109, 255, 0.12);
+  background: rgba(53, 109, 255, 0.08);
   border-color: rgba(53, 109, 255, 0.2);
   color: var(--app-accent-strong);
 }
 
 .login-code {
-  height: 48px;
+  height: 44px;
   box-sizing: border-box;
-  border-radius: 16px;
   overflow: hidden;
   background: var(--el-bg-color);
   border: 1px solid var(--app-surface-border);
@@ -522,45 +448,61 @@ onMounted(() => {
   bottom: 0;
   width: 100%;
   text-align: center;
-  color: rgba(226, 232, 240, 0.68);
+  color: var(--app-text-muted);
   font-size: 12px;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.04em;
 }
 
 .login-code-img {
-  height: 48px;
+  height: 44px;
   padding-left: 0;
+}
+
+.link-type {
+  color: var(--app-accent-strong);
+  font-size: 13px;
 }
 
 @media (max-width: 960px) {
   .login {
-    padding: 24px 14px 80px;
+    padding: 64px 14px 72px;
   }
 
   .login-shell {
     grid-template-columns: 1fr;
+    min-height: auto;
   }
 
   .login-brand {
+    min-height: 180px;
     padding: 28px 24px;
   }
 
-  .brand-metrics {
-    grid-template-columns: 1fr;
+  .login-form {
+    padding: 28px 24px 24px;
   }
 }
 
 @media (max-width: 640px) {
+  .login-logo {
+    left: 16px;
+    top: 16px;
+    font-size: 16px;
+  }
+
   .login-brand {
     display: none;
   }
 
   .login-form {
-    padding: 26px 18px 20px;
+    padding: 24px 18px 20px;
   }
 
-  .title-box {
-    flex-direction: column;
+  .title-box .lang-switch {
+    position: static;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 8px;
   }
 
   .social-panel {

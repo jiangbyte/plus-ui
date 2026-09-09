@@ -1,7 +1,7 @@
 <template>
   <div class="p-2 app-container system-oss-config-page">
     <div class="search-wrap">
-      <el-card shadow="hover" class="search-panel" :class="{ 'is-collapsed': !showSearch }">
+      <el-card shadow="never" class="search-panel" :class="{ 'is-collapsed': !showSearch }">
         <template #header>
           <div class="panel-heading search-panel-toggle" @click.stop="showSearch = !showSearch">
             <div>
@@ -35,7 +35,7 @@
       </el-card>
     </div>
 
-    <el-card shadow="hover" class="table-panel">
+    <el-card shadow="never" class="table-panel">
       <template #header>
         <div class="toolbar-shell">
           <div class="table-heading">
@@ -78,6 +78,7 @@
         class="data-table"
         :data="ossConfigList"
         @selection-change="handleSelectionChange"
+        show-overflow-tooltip
       >
         <el-table-column type="selection" width="55" align="center" />
         <el-table-column v-if="columns[0].visible" label="主建" align="center" prop="ossConfigId" />

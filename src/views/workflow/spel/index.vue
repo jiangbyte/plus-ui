@@ -1,7 +1,7 @@
 <template>
   <div class="p-2 app-container workflow-spel-page">
     <div class="search-wrap">
-      <el-card shadow="hover" class="search-panel" :class="{ 'is-collapsed': !showSearch }">
+      <el-card shadow="never" class="search-panel" :class="{ 'is-collapsed': !showSearch }">
         <template #header>
           <div class="panel-heading search-panel-toggle" @click.stop="showSearch = !showSearch">
             <div><h3>筛选条件</h3></div>
@@ -32,7 +32,7 @@
       </el-card>
     </div>
 
-    <el-card shadow="hover" class="table-panel">
+    <el-card shadow="never" class="table-panel">
       <template #header>
         <div class="toolbar-shell">
           <div class="table-heading">
@@ -73,6 +73,7 @@
         class="data-table"
         :data="spelList"
         @selection-change="handleSelectionChange"
+        show-overflow-tooltip
       >
         <el-table-column type="selection" width="55" align="center" />
         <el-table-column label="序号" type="index" width="60" align="center">
@@ -393,7 +394,7 @@ onMounted(() => {
   width: 100%;
   padding: 10px 12px;
   background-color: var(--el-fill-color-light);
-  border-radius: 4px;
+  border-radius: 0;
   color: var(--el-text-color-primary);
   font-family: monospace; /* 等宽字体更清晰 */
   white-space: nowrap; /* 禁止换行 */

@@ -1,6 +1,6 @@
 <template>
   <div class="p-2 app-container workflow-process-instance-page">
-    <el-row :gutter="20" class="content-grid">
+    <el-row :gutter="8" class="content-grid">
       <!-- 流程分类树 -->
       <tree-panel
         ref="treePanelRef"
@@ -19,7 +19,7 @@
         :class="{ 'is-tree-collapsed': treeCollapsed }"
       >
         <div class="search-wrap">
-          <el-card shadow="hover" class="search-panel" :class="{ 'is-collapsed': !showSearch }">
+          <el-card shadow="never" class="search-panel" :class="{ 'is-collapsed': !showSearch }">
             <template #header>
               <div class="panel-heading search-panel-toggle" @click.stop="showSearch = !showSearch">
                 <div><h3>筛选条件</h3></div>
@@ -47,7 +47,7 @@
             </el-form>
           </el-card>
         </div>
-        <el-card shadow="hover" class="table-panel">
+        <el-card shadow="never" class="table-panel">
           <template #header>
             <div class="toolbar-shell">
               <div class="table-heading">
@@ -81,6 +81,7 @@
               class="data-table"
               :data="processInstanceList"
               @selection-change="handleSelectionChange"
+              show-overflow-tooltip
             >
               <el-table-column type="selection" width="55" align="center" />
               <el-table-column align="center" type="index" label="序号" width="60"></el-table-column>
@@ -89,12 +90,14 @@
                 prop="businessCode"
                 align="center"
                 label="业务编码"
+                show-overflow-tooltip
               ></el-table-column>
               <el-table-column
                 :show-overflow-tooltip="true"
                 prop="businessTitle"
                 align="center"
                 label="业务标题"
+                show-overflow-tooltip
               ></el-table-column>
               <el-table-column :show-overflow-tooltip="true" align="center" width="120" label="流程定义名称">
                 <template #default="scope">
@@ -109,6 +112,7 @@
                 prop="createByName"
                 :show-overflow-tooltip="true"
                 label="申请人"
+                show-overflow-tooltip
               ></el-table-column>
               <el-table-column align="center" prop="version" label="版本号" width="90">
                 <template #default="scope">v{{ scope.row.version }}.0</template>
@@ -246,6 +250,7 @@
           prop="deploymentTime"
           label="部署时间"
           :show-overflow-tooltip="true"
+          show-overflow-tooltip
         ></el-table-column>
       </el-table>
     </el-dialog>

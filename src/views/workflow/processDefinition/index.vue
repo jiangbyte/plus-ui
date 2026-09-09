@@ -1,6 +1,6 @@
 <template>
   <div class="p-2 app-container workflow-process-definition-page">
-    <el-row :gutter="20" class="content-grid">
+    <el-row :gutter="8" class="content-grid">
       <!-- 流程分类树 -->
       <tree-panel
         ref="treePanelRef"
@@ -19,7 +19,7 @@
         :class="{ 'is-tree-collapsed': treeCollapsed }"
       >
         <div class="search-wrap">
-          <el-card shadow="hover" class="search-panel" :class="{ 'is-collapsed': !showSearch }">
+          <el-card shadow="never" class="search-panel" :class="{ 'is-collapsed': !showSearch }">
             <template #header>
               <div class="panel-heading search-panel-toggle" @click.stop="showSearch = !showSearch">
                 <div><h3>筛选条件</h3></div>
@@ -49,7 +49,7 @@
             </el-form>
           </el-card>
         </div>
-        <el-card shadow="hover" class="table-panel">
+        <el-card shadow="never" class="table-panel">
           <template #header>
             <div class="toolbar-shell">
               <div class="table-heading">
@@ -111,6 +111,7 @@
               class="data-table"
               :data="processDefinitionList"
               @selection-change="handleSelectionChange"
+              show-overflow-tooltip
             >
               <el-table-column type="selection" width="55" align="center" />
               <el-table-column align="center" prop="id" label="主键" v-if="false"></el-table-column>
@@ -119,18 +120,21 @@
                 prop="flowName"
                 label="流程定义名称"
                 :show-overflow-tooltip="true"
+                show-overflow-tooltip
               ></el-table-column>
               <el-table-column
                 align="center"
                 prop="flowCode"
                 label="标识KEY"
                 :show-overflow-tooltip="true"
+                show-overflow-tooltip
               ></el-table-column>
               <el-table-column
                 align="center"
                 prop="categoryName"
                 label="流程分类"
                 :show-overflow-tooltip="true"
+                show-overflow-tooltip
               ></el-table-column>
               <el-table-column align="center" prop="version" label="版本号" width="80">
                 <template #default="scope">v{{ scope.row.version }}.0</template>
@@ -706,7 +710,7 @@ const handleExportDef = () => {
   min-width: 0 !important;
   height: 30px !important;
   padding: 0 10px !important;
-  border-radius: 10px !important;
+  border-radius: 0 !important;
   background: rgba(53, 109, 255, 0.08) !important;
 }
 

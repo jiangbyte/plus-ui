@@ -296,7 +296,7 @@ defineExpose({
 <style lang="scss" scoped>
 .layout-search-dialog {
   :deep(.el-dialog) {
-    border-radius: 22px;
+    border-radius: 0;
     overflow: hidden;
     padding: 0;
   }
@@ -355,7 +355,7 @@ defineExpose({
     color 0.18s ease;
 
   &:hover {
-    transform: translateY(-1px);
+    transform: none;
     background: rgba(64, 158, 255, 0.08);
   }
 
@@ -463,7 +463,7 @@ kbd {
   height: 20px;
   padding: 0 5px;
   border: 1px solid var(--app-surface-border);
-  border-radius: 6px;
+  border-radius: 0;
   background: var(--app-elevated-soft-bg);
   color: var(--app-text-title);
   font-size: 11px;

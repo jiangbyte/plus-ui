@@ -13,7 +13,7 @@
           :leave-active-class="animateConfig.searchAnimate.leave"
         >
           <div v-show="showSearch">
-            <el-card shadow="hover" class="search-panel selector-card">
+            <el-card shadow="never" class="search-panel selector-card">
               <el-form ref="queryFormRef" :model="queryParams" :inline="true" class="query-form">
                 <el-form-item label="角色名称" prop="roleName">
                   <el-input
@@ -41,7 +41,7 @@
           </div>
         </transition>
 
-        <el-card shadow="hover" class="table-panel selector-card">
+        <el-card shadow="never" class="table-panel selector-card">
           <template #header>
             <div class="toolbar-shell selector-header">
               <div class="table-heading">

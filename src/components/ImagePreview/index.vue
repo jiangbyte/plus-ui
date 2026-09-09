@@ -59,7 +59,7 @@ const realHeight = computed(() => (typeof props.height == 'string' ? props.heigh
 
 <style lang="scss" scoped>
 .el-image {
-  border-radius: 5px;
+  border-radius: 0;
   background-color: var(--app-elevated-soft-bg);
   box-shadow: var(--app-shadow-sm);
 

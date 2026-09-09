@@ -49,11 +49,16 @@ function addIframe() {
 
 <style lang="scss" scoped>
 .app-main {
-  min-height: 100vh;
   width: 100%;
   position: relative;
-  overflow: hidden;
-  padding: 12px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  min-height: 100vh;
 
   &:fullscreen,
   &:-webkit-full-screen,
@@ -65,21 +70,43 @@ function addIframe() {
 }
 
 .app-main:not(.with-fixed-header) {
-  min-height: calc(100vh - 64px);
+  height: calc(100vh - 52px);
+  min-height: calc(100vh - 52px);
 }
 
 .app-main.with-tags-view:not(.with-fixed-header) {
-  min-height: calc(100vh - 105px);
+  height: calc(100vh - 90px);
+  min-height: calc(100vh - 90px);
 }
 
 .app-main.with-fixed-header {
-  padding-top: 76px;
-  min-height: calc(100vh - 76px);
+  padding-top: 52px;
+  height: 100vh;
+  min-height: 100vh;
 }
 
 .app-main.with-fixed-header.with-tags-view {
-  min-height: calc(100vh - 111px);
-  padding-top: 111px;
+  padding-top: 90px;
+  height: 100vh;
+  min-height: 100vh;
+}
+
+/* 首页等非全高页：内容超出时可滚动，不被 flex 压缩 */
+.app-main > :not(.p-2) {
+  flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+  .app-main,
+  .app-main:not(.with-fixed-header),
+  .app-main.with-tags-view:not(.with-fixed-header),
+  .app-main.with-fixed-header,
+  .app-main.with-fixed-header.with-tags-view {
+    height: auto;
+    min-height: 100%;
+    overflow: visible;
+    overflow-y: auto;
+  }
 }
 </style>
 <style lang="scss">
@@ -101,6 +128,6 @@ function addIframe() {
 
 ::-webkit-scrollbar-thumb {
   background-color: var(--el-text-color-placeholder);
-  border-radius: 999px;
+  border-radius: 0;
 }
 </style>

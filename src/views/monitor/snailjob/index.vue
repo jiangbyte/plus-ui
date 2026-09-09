@@ -13,7 +13,7 @@ const url = ref(import.meta.env.VITE_APP_SNAILJOB_ADMIN);
 <style lang="scss" scoped>
 .iframe-page__inner {
   overflow: hidden;
-  border-radius: 14px;
+  border-radius: 0;
   background: var(--app-surface-bg);
   box-shadow: var(--app-shadow-sm);
 }

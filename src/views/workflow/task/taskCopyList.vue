@@ -1,7 +1,7 @@
 <template>
   <div class="p-2 app-container workflow-task-copy-page">
     <div class="search-wrap">
-      <el-card shadow="hover" class="search-panel" :class="{ 'is-collapsed': !showSearch }">
+      <el-card shadow="never" class="search-panel" :class="{ 'is-collapsed': !showSearch }">
         <template #header>
           <div class="panel-heading search-panel-toggle" @click.stop="showSearch = !showSearch">
             <div><h3>筛选条件</h3></div>
@@ -24,7 +24,7 @@
         </el-form>
       </el-card>
     </div>
-    <el-card shadow="hover" class="table-panel">
+    <el-card shadow="never" class="table-panel">
       <template #header>
         <div class="toolbar-shell">
           <div class="table-heading">
@@ -42,6 +42,7 @@
         class="data-table"
         :data="taskList"
         @selection-change="handleSelectionChange"
+        show-overflow-tooltip
       >
         <el-table-column type="selection" width="55" align="center" />
         <el-table-column align="center" type="index" label="序号" width="60"></el-table-column>
@@ -50,18 +51,21 @@
           prop="businessCode"
           align="center"
           label="业务编码"
+          show-overflow-tooltip
         ></el-table-column>
         <el-table-column
           :show-overflow-tooltip="true"
           prop="businessTitle"
           align="center"
           label="业务标题"
+          show-overflow-tooltip
         ></el-table-column>
         <el-table-column
           :show-overflow-tooltip="true"
           prop="flowName"
           align="center"
           label="流程定义名称"
+          show-overflow-tooltip
         ></el-table-column>
         <el-table-column align="center" prop="flowCode" label="流程定义编码"></el-table-column>
         <el-table-column align="center" prop="categoryName" label="流程分类"></el-table-column>

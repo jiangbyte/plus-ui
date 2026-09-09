@@ -114,7 +114,7 @@ onMounted(() => {
 :deep(.el-button.is-circle) {
   width: 38px;
   height: 38px;
-  border-radius: 14px;
+  border-radius: 0;
   background: var(--app-elevated-soft-bg);
   border: 1px solid var(--app-surface-border);
   color: var(--app-text-muted);
@@ -125,7 +125,7 @@ onMounted(() => {
     background 0.25s ease;
 
   &:hover {
-    transform: translateY(-1px);
+    transform: none;
     color: var(--app-accent-strong);
     background: var(--app-accent-soft);
     border-color: rgba(53, 109, 255, 0.2);

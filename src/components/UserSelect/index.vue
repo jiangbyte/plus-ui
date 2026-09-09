@@ -8,7 +8,7 @@
       class="user-select-dialog"
     >
       <div class="p-2 user-select-shell">
-        <el-row :gutter="12" class="selector-layout">
+        <el-row :gutter="8" class="selector-layout">
           <!-- 部门树 -->
           <el-col
             :lg="treeCollapsed ? 1 : 5"
@@ -17,7 +17,7 @@
             :class="{ 'is-collapsed': treeCollapsed }"
           >
             <el-card
-              shadow="hover"
+              shadow="never"
               class="side-panel tree-panel-shell selector-card selector-side-card"
               :class="{ 'is-collapsed': treeCollapsed }"
             >
@@ -67,7 +67,7 @@
                 :leave-active-class="animateConfig.searchAnimate.leave"
               >
                 <div v-show="showSearch">
-                  <el-card shadow="hover" class="search-panel selector-card">
+                  <el-card shadow="never" class="search-panel selector-card">
                     <el-form ref="queryFormRef" :model="queryParams" :inline="true" class="query-form">
                       <el-form-item label="用户名称" prop="userName">
                         <el-input
@@ -94,7 +94,7 @@
                 </div>
               </transition>
 
-              <el-card shadow="hover" class="table-panel selector-card">
+              <el-card shadow="never" class="table-panel selector-card">
                 <template #header>
                   <div class="toolbar-shell selector-header">
                     <div class="table-heading">

@@ -30,7 +30,7 @@
 .el-cascader-node {
   min-height: 38px;
   margin: 2px 0;
-  border-radius: 10px;
+  border-radius: 0;
   color: var(--app-text-title);
   line-height: 38px;
   transition:
@@ -154,7 +154,7 @@
 .el-date-table td,
 .el-month-table td .cell,
 .el-year-table td .cell {
-  border-radius: 10px;
+  border-radius: 0;
 }
 
 .el-date-table td.today .el-date-table-cell__text,

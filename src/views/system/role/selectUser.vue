@@ -2,7 +2,7 @@
   <el-row>
     <el-dialog v-model="visible" title="选择用户" width="800px" top="5vh" append-to-body class="select-user-dialog">
       <div class="p-2 select-user-shell">
-        <el-card shadow="hover" class="search-panel select-user-card">
+        <el-card shadow="never" class="search-panel select-user-card">
           <el-form ref="queryFormRef" :model="queryParams" :inline="true" class="query-form">
             <el-form-item label="用户名称" prop="userName">
               <el-input
@@ -27,7 +27,7 @@
           </el-form>
         </el-card>
 
-        <el-card shadow="hover" class="table-panel select-user-card">
+        <el-card shadow="never" class="table-panel select-user-card">
           <el-table
             ref="tableRef"
             border
@@ -36,6 +36,7 @@
             height="260px"
             @row-click="clickRow"
             @selection-change="handleSelectionChange"
+            show-overflow-tooltip
           >
             <el-table-column type="selection" width="55"></el-table-column>
             <el-table-column label="用户名称" prop="userName" :show-overflow-tooltip="true" />

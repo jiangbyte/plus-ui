@@ -1,9 +1,9 @@
 <template>
   <div class="p-2 app-container dict-page">
-    <el-row :gutter="16" class="dict-grid">
+    <el-row :gutter="8" class="dict-grid">
       <!-- 字典类型 -->
       <el-col :xs="24" :lg="12">
-        <el-card shadow="hover" class="dict-card table-panel">
+        <el-card shadow="never" class="dict-card table-panel">
           <template #header>
             <div class="toolbar-shell dict-card__header">
               <div class="table-heading">
@@ -102,6 +102,7 @@
               highlight-current-row
               @row-click="handleTypeRowClick"
               @selection-change="handleTypeSelectionChange"
+              show-overflow-tooltip
             >
               <el-table-column type="selection" width="55" align="center" />
               <el-table-column v-if="false" label="字典编号" align="center" prop="dictId" />
@@ -162,7 +163,7 @@
 
       <!-- 字典数据 -->
       <el-col :xs="24" :lg="12">
-        <el-card shadow="hover" class="dict-card table-panel">
+        <el-card shadow="never" class="dict-card table-panel">
           <template #header>
             <div class="toolbar-shell dict-card__header">
               <div class="table-heading">
@@ -253,6 +254,7 @@
               class="data-table"
               :data="dataList"
               @selection-change="handleDataSelectionChange"
+              show-overflow-tooltip
             >
               <el-table-column type="selection" width="55" align="center" />
               <el-table-column v-if="false" label="字典编码" align="center" prop="dictCode" />
@@ -790,7 +792,7 @@ onMounted(() => {
 .dict-actions :deep(.el-button) {
   height: 32px;
   padding: 0 14px;
-  border-radius: 10px !important;
+  border-radius: 0 !important;
 }
 
 .dict-actions :deep(.el-button + .el-button) {

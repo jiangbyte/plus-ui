@@ -1,8 +1,8 @@
 <template>
   <div class="p-2 app-container profile-page">
-    <el-row :gutter="20" class="profile-grid">
+    <el-row :gutter="8" class="profile-grid">
       <el-col :span="6" :xs="24">
-        <el-card shadow="hover" class="side-panel profile-summary-card">
+        <el-card shadow="never" class="side-panel profile-summary-card">
           <template #header>
             <div class="panel-heading">
               <div><h3>个人信息</h3></div>
@@ -63,7 +63,7 @@
         </el-card>
       </el-col>
       <el-col :span="18" :xs="24">
-        <el-card shadow="hover" class="table-panel profile-main-card">
+        <el-card shadow="never" class="table-panel profile-main-card">
           <template #header>
             <div class="toolbar-shell">
               <div class="table-heading">
@@ -207,7 +207,7 @@ onMounted(() => {
   height: 36px;
   min-width: 88px;
   padding: 0 16px;
-  border-radius: 10px;
+  border-radius: 0;
   color: var(--el-text-color-regular);
 }
 

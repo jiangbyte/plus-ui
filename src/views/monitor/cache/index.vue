@@ -1,8 +1,8 @@
 <template>
   <div class="p-2 app-container monitor-cache-page">
-    <el-row :gutter="12" class="cache-grid">
+    <el-row :gutter="8" class="cache-grid">
       <el-col :span="24">
-        <el-card shadow="hover" class="table-panel">
+        <el-card shadow="never" class="table-panel">
           <template #header>
             <div class="toolbar-shell">
               <div class="table-heading">
@@ -110,7 +110,7 @@
       </el-col>
 
       <el-col :xs="24" :lg="12">
-        <el-card shadow="hover" class="table-panel">
+        <el-card shadow="never" class="table-panel">
           <template #header>
             <div class="toolbar-shell">
               <div class="table-heading">
@@ -125,7 +125,7 @@
       </el-col>
 
       <el-col :xs="24" :lg="12">
-        <el-card shadow="hover" class="table-panel">
+        <el-card shadow="never" class="table-panel">
           <template #header>
             <div class="toolbar-shell">
               <div class="table-heading">
@@ -238,7 +238,7 @@ onBeforeUnmount(() => {
 .cache-table {
   overflow: hidden;
   border: 1px solid var(--app-surface-border);
-  border-radius: 10px;
+  border-radius: 0;
 }
 
 .cache-table table {
@@ -247,6 +247,6 @@ onBeforeUnmount(() => {
 
 .cache-chart {
   overflow: hidden;
-  border-radius: 10px;
+  border-radius: 0;
 }
 </style>

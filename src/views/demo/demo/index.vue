@@ -1,7 +1,7 @@
 <template>
   <div class="p-2 app-container demo-demo-page">
     <div class="search-wrap">
-      <el-card shadow="hover" class="search-panel" :class="{ 'is-collapsed': !showSearch }">
+      <el-card shadow="never" class="search-panel" :class="{ 'is-collapsed': !showSearch }">
         <template #header>
           <div class="panel-heading search-panel-toggle" @click.stop="showSearch = !showSearch">
             <div><h3>筛选条件</h3></div>
@@ -22,7 +22,7 @@
       </el-card>
     </div>
 
-    <el-card shadow="hover" class="table-panel">
+    <el-card shadow="never" class="table-panel">
       <template #header>
         <div class="toolbar-shell">
           <div class="table-heading">
@@ -66,6 +66,7 @@
         class="data-table"
         :data="demoList"
         @selection-change="handleSelectionChange"
+        show-overflow-tooltip
       >
         <el-table-column type="selection" width="55" align="center" />
         <el-table-column v-if="true" label="主键" align="center" prop="id" />

@@ -11,7 +11,12 @@
 .el-select__popper.el-popper {
   border-radius: var(--app-radius-base);
   border-color: var(--app-surface-border);
-  box-shadow: var(--app-shadow-md);
+  box-shadow: none;
+}
+
+.el-card.is-hover-shadow:hover,
+.el-card.is-always-shadow {
+  box-shadow: none;
 }
 
 // --- 实体「面板」背景 ---

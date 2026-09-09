@@ -1,7 +1,7 @@
 <template>
   <div class="p-2 app-container monitor-online-page">
     <div class="search-wrap">
-      <el-card shadow="hover" class="search-panel">
+      <el-card shadow="never" class="search-panel">
         <template #header>
           <div class="panel-heading">
             <div>
@@ -29,7 +29,7 @@
         </el-form>
       </el-card>
     </div>
-    <el-card shadow="hover" class="table-panel">
+    <el-card shadow="never" class="table-panel">
       <template #header>
         <div class="toolbar-shell">
           <div class="table-heading">
@@ -47,6 +47,7 @@
           onlineList.slice((queryParams.pageNum - 1) * queryParams.pageSize, queryParams.pageNum * queryParams.pageSize)
         "
         style="width: 100%"
+        show-overflow-tooltip
       >
         <el-table-column label="序号" width="50" type="index" align="center">
           <template #default="scope">

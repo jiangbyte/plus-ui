@@ -52,12 +52,12 @@
 /* vxe 表格圆角与表头色，与全局表格 token 一致 */
 @mixin selector-table {
   .selector-table {
-    border-radius: 10px;
+    border-radius: 0;
     overflow: hidden;
   }
 
   .selector-table :deep(.vxe-table--render-default) {
-    border-radius: 10px;
+    border-radius: 0;
     color: var(--app-text-title);
   }
 

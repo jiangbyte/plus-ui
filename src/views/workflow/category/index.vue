@@ -1,7 +1,7 @@
 <template>
   <div class="p-2 app-container workflow-category-page">
     <div class="search-wrap">
-      <el-card shadow="hover" class="search-panel" :class="{ 'is-collapsed': !showSearch }">
+      <el-card shadow="never" class="search-panel" :class="{ 'is-collapsed': !showSearch }">
         <template #header>
           <div class="panel-heading search-panel-toggle" @click.stop="showSearch = !showSearch">
             <div><h3>筛选条件</h3></div>
@@ -24,7 +24,7 @@
       </el-card>
     </div>
 
-    <el-card shadow="hover" class="table-panel">
+    <el-card shadow="never" class="table-panel">
       <template #header>
         <div class="toolbar-shell">
           <div class="table-heading">
@@ -48,6 +48,7 @@
         border
         :default-expand-all="isExpandAll"
         :tree-props="{ children: 'children', hasChildren: 'hasChildren' }"
+        show-overflow-tooltip
       >
         <el-table-column label="分类名称" prop="categoryName" width="260" />
         <el-table-column label="显示顺序" align="center" prop="orderNum" width="200" />
@@ -97,7 +98,7 @@
             check-strictly
           />
         </el-form-item>
-        <el-row :gutter="20">
+        <el-row :gutter="8">
           <el-col :span="12">
             <el-form-item label="分类名称" prop="categoryName">
               <el-input v-model="form.categoryName" placeholder="请输入分类名称" />

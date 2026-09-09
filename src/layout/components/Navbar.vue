@@ -179,21 +179,16 @@ const handleCommand = (command: string) => {
     justify-content: center;
     margin-right: 12px;
     flex-shrink: 0;
-    border-radius: 14px;
+    border-radius: 0;
     border: 1px solid var(--app-surface-border);
     background: var(--app-surface-bg);
-    box-shadow: var(--app-shadow-sm);
-    transition:
-      transform 0.2s ease,
-      border-color 0.2s ease,
-      box-shadow 0.2s ease;
+    box-shadow: none;
+    transition: border-color 0.2s ease;
 
     &:hover {
-      transform: translateY(-1px);
+      transform: none;
       border-color: rgba(64, 158, 255, 0.22);
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.76),
-        0 10px 22px rgba(15, 23, 42, 0.08);
+      box-shadow: none;
     }
   }
 
@@ -201,7 +196,7 @@ const handleCommand = (command: string) => {
     width: 32px;
     height: 32px;
     display: block;
-    border-radius: 11px;
+    border-radius: 0;
   }
 
   .topbar-container {
@@ -270,11 +265,11 @@ const handleCommand = (command: string) => {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 12px;
+    border-radius: 0;
     background: transparent;
     color: var(--app-accent-strong);
     flex-shrink: 0;
-    border: 1px solid var(--app-surface-border);
+    border: none;
   }
 
   .hamburger-container {
@@ -344,7 +339,7 @@ const handleCommand = (command: string) => {
       height: 32px;
       font-size: 16px;
       color: var(--app-text-muted);
-      border-radius: 12px;
+      border-radius: 0;
       vertical-align: text-bottom;
       background: transparent;
       border: 1px solid transparent;
@@ -397,24 +392,22 @@ const handleCommand = (command: string) => {
         gap: 12px;
         padding: 4px 8px 4px 4px;
         border-radius: var(--app-radius-base);
-        background: var(--app-surface-bg);
-        border: 1px solid var(--app-surface-border);
+        background: transparent;
+        border: none;
         min-width: 0;
         cursor: pointer;
-        transition:
-          background 0.3s,
-          border-color 0.3s;
+        transition: background 0.3s;
 
         &:hover {
           background: var(--app-accent-soft);
-          border-color: rgba(64, 158, 255, 0.16);
+          border-color: transparent;
         }
 
         .user-avatar {
           cursor: pointer;
           width: 28px;
           height: 28px;
-          border-radius: 12px;
+          border-radius: 50%;
           object-fit: cover;
           box-shadow: none;
         }
@@ -453,25 +446,25 @@ const handleCommand = (command: string) => {
 
 html.dark {
   .navbar.navtop .navtop-logo-shell {
-    background: linear-gradient(180deg, rgba(15, 23, 42, 0.92), rgba(30, 41, 59, 0.82));
+    background: #111827;
     border-color: rgba(71, 85, 105, 0.42);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.06),
-      0 8px 18px rgba(0, 0, 0, 0.24);
+    box-shadow: none;
   }
 
   .navbar.navtop .topbar-container {
-    background: linear-gradient(180deg, rgba(15, 23, 42, 0.82), rgba(15, 23, 42, 0.7));
+    background: #111827;
     border-color: rgba(71, 85, 105, 0.34);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.05),
-      0 8px 22px rgba(0, 0, 0, 0.2);
+    box-shadow: none;
   }
 
-  .navbar .right-menu .right-menu-item,
+  .navbar .right-menu .right-menu-item {
+    background: transparent;
+    border-color: transparent;
+  }
+
   .navbar .right-menu .avatar-wrapper {
-    background: var(--app-navbar-bg);
-    border-color: var(--app-navbar-border);
+    background: transparent;
+    border: none;
   }
 }
 </style>

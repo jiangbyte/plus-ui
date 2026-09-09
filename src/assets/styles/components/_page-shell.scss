@@ -3,12 +3,54 @@
 .p-2 {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 }
 
 .app-main > .p-2 {
+  flex: 1 1 auto;
+  min-height: 0;
+  height: 100%;
   padding: 0 !important;
   margin: 0 !important;
+  overflow: hidden;
+}
+
+.app-main > .p-2 > .content-grid,
+.app-main > .p-2 > .profile-grid,
+.app-main > .p-2 > .dict-grid,
+.app-main > .p-2 > .table-panel,
+.app-main > .p-2 > .search-wrap + .table-panel {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.app-main > .p-2 > .content-grid,
+.app-main > .p-2 > .profile-grid,
+.app-main > .p-2 > .dict-grid {
+  height: 100%;
+}
+
+.app-main > .p-2 > .search-wrap {
+  flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+  .app-main > .p-2 {
+    flex: none;
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+  }
+
+  .app-main > .p-2 > .content-grid,
+  .app-main > .p-2 > .profile-grid,
+  .app-main > .p-2 > .dict-grid,
+  .app-main > .p-2 > .table-panel,
+  .app-main > .p-2 > .search-wrap + .table-panel {
+    flex: none;
+    min-height: 0;
+    height: auto;
+  }
 }
 
 .p-2 > .el-row,
@@ -19,6 +61,25 @@
   margin-bottom: 0 !important;
 }
 
+// 树表 / 双栏布局：保留适度水平间隔（约 8px），避免原先 gutter=20 过大
+.content-grid,
+.profile-grid,
+.dict-grid,
+.selector-layout,
+.cache-grid {
+  margin-left: -4px !important;
+  margin-right: -4px !important;
+}
+
+.content-grid > .el-col,
+.profile-grid > .el-col,
+.dict-grid > .el-col,
+.selector-layout > .el-col,
+.cache-grid > .el-col {
+  padding-left: 4px !important;
+  padding-right: 4px !important;
+}
+
 // --- CRUD / 树表页用混入（在 .vue 内 @use 后 @include） ---
 
 @mixin action-link-buttons($background: rgba(53, 109, 255, 0.08)) {
@@ -26,7 +87,7 @@
     :deep(.el-button.is-link) {
       width: 32px;
       height: 32px;
-      border-radius: 10px;
+      border-radius: 0;
       background: $background;
     }
   }
@@ -40,11 +101,34 @@
   }
 }
 
-@mixin content-stack($gap: 12px) {
+@mixin content-stack($gap: 8px) {
   .content-main {
     display: flex;
     flex-direction: column;
     gap: $gap;
+    height: 100%;
+    min-height: 0;
+  }
+
+  .content-main > .search-wrap {
+    flex-shrink: 0;
+  }
+
+  .content-main > .table-panel {
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+
+  @media (max-width: 900px) {
+    .content-main {
+      height: auto;
+      min-height: 0;
+    }
+
+    .content-main > .table-panel {
+      flex: none;
+      min-height: 0;
+    }
   }
 }
 
@@ -63,9 +147,32 @@
   .tree-panel-col,
   .tree-content-col {
     min-width: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
     transition:
       max-width 0.24s ease,
       flex-basis 0.24s ease;
+  }
+
+  @media (max-width: $mobile-breakpoint) {
+    .tree-panel-col,
+    .tree-content-col {
+      height: auto;
+    }
+
+    .tree-panel-shell,
+    .side-panel {
+      flex: none;
+      height: auto;
+      min-height: 0;
+    }
+
+    .tree-panel-shell :deep(.el-card__body) {
+      flex: none;
+      height: auto !important;
+      max-height: 420px !important;
+    }
   }
 
   .tree-panel-col.is-collapsed {
@@ -80,24 +187,26 @@
 
   .tree-panel-shell,
   .side-panel {
+    flex: 1 1 auto;
     height: 100%;
-  }
-
-  .tree-panel-shell {
-    --tree-panel-max-height: 620px;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
   }
 
   .tree-panel-shell :deep(.el-card__header) {
     display: block;
     padding: 12px 16px !important;
+    flex-shrink: 0;
   }
 
   .tree-panel-shell :deep(.el-card__body) {
     display: flex;
     flex-direction: column;
-    height: var(--tree-panel-max-height);
+    flex: 1 1 auto;
+    height: auto !important;
     min-height: 0;
-    max-height: var(--tree-panel-max-height);
+    max-height: none !important;
     overflow: hidden;
   }
 
@@ -143,7 +252,7 @@
 
   .dept-tree::-webkit-scrollbar-thumb,
   .selector-tree::-webkit-scrollbar-thumb {
-    border-radius: 999px;
+    border-radius: 0;
     background: var(--app-text-muted);
     opacity: 0.55;
   }
@@ -170,10 +279,7 @@
     .tree-content-col {
       max-width: 100%;
       flex: 0 0 100%;
-    }
-
-    .tree-panel-shell {
-      --tree-panel-max-height: 420px;
+      height: auto;
     }
 
     .side-panel.is-collapsed {
@@ -185,11 +291,23 @@
 @mixin table-crud-page($mobile-breakpoint: 900px, $background: rgba(53, 109, 255, 0.08)) {
   @include action-link-buttons($background);
   @include toolbar-responsive($mobile-breakpoint);
+
+  .table-panel {
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+
+  @media (max-width: $mobile-breakpoint) {
+    .table-panel {
+      flex: none;
+      min-height: 0;
+    }
+  }
 }
 
 @mixin tree-table-crud-page(
   $mobile-breakpoint: 900px,
-  $gap: 12px,
+  $gap: 8px,
   $tree-padding-top: 6px,
   $background: rgba(53, 109, 255, 0.08)
 ) {

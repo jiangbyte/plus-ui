@@ -69,7 +69,7 @@ const logoTextColor = computed(() => (isDarkSide.value ? '#f8fbff' : 'var(--app-
     align-items: center;
     justify-content: center;
     gap: 8px;
-    border-radius: 14px;
+    border-radius: 0;
     background: v-bind(logoSurface);
     border: 1px solid v-bind(logoBorder);
 
@@ -79,7 +79,7 @@ const logoTextColor = computed(() => (isDarkSide.value ? '#f8fbff' : 'var(--app-
       vertical-align: middle;
       margin-right: 0;
       margin-left: 0;
-      border-radius: 10px;
+      border-radius: 0;
       box-shadow: none;
     }
 

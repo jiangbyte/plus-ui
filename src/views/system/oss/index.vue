@@ -1,7 +1,7 @@
 <template>
   <div class="p-2 app-container system-oss-page">
     <div class="search-wrap">
-      <el-card shadow="hover" class="search-panel" :class="{ 'is-collapsed': !showSearch }">
+      <el-card shadow="never" class="search-panel" :class="{ 'is-collapsed': !showSearch }">
         <template #header>
           <div class="panel-heading search-panel-toggle" @click.stop="showSearch = !showSearch">
             <div>
@@ -52,7 +52,7 @@
       </el-card>
     </div>
 
-    <el-card shadow="hover" class="table-panel">
+    <el-card shadow="never" class="table-panel">
       <template #header>
         <div class="toolbar-shell">
           <div class="table-heading">
@@ -108,6 +108,7 @@
         :header-cell-class-name="handleHeaderClass"
         @selection-change="handleSelectionChange"
         @header-click="handleHeaderCLick"
+        show-overflow-tooltip
       >
         <el-table-column type="selection" width="55" align="center" />
         <el-table-column v-if="false" label="对象存储主键" align="center" prop="ossId" />

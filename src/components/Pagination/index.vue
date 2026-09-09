@@ -71,8 +71,8 @@ function handleCurrentChange(val: number) {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding-top: 10px;
-  margin-top: 18px;
+  padding-top: 8px;
+  margin-top: 8px;
   border-top: 1px solid var(--app-surface-border);
 
   .el-pagination {

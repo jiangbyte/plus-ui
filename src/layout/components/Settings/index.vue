@@ -101,12 +101,6 @@
         <el-switch v-model="isDark" class="drawer-switch" @change="toggleDark" />
       </span>
     </div>
-    <div class="drawer-item">
-      <span>页面圆角</span>
-      <span class="comp-style">
-        <el-slider v-model="radiusBase" :min="0" :max="32" :step="2" style="width: 120px" @change="radiusBaseChange" />
-      </span>
-    </div>
 
     <el-divider />
 
@@ -189,7 +183,6 @@ const sideTheme = ref(settingsStore.sideTheme);
 const storeSettings = computed(() => settingsStore);
 const predefineColors = ref(['#409EFF', '#ff4500', '#ff8c00', '#ffd700', '#90ee90', '#00ced1', '#1e90ff', '#c71585']);
 const navType = ref(settingsStore.navType);
-const radiusBase = ref(settingsStore.radiusBase);
 // 是否暗黑模式
 const isDark = useDark({
   storageKey: 'useDarkKey',
@@ -237,11 +230,6 @@ const themeChange = (val: string) => {
   settingsStore.theme = val;
   handleThemeStyle(val);
 };
-const radiusBaseChange = (val: number) => {
-  settingsStore.radiusBase = val;
-  // 更新 CSS 变量
-  document.documentElement.style.setProperty('--app-radius-base', `${val}px`);
-};
 const handleTheme = (val: string) => {
   sideTheme.value = val;
   if (isDark.value && val === SideThemeEnum.LIGHT) {
@@ -266,7 +254,6 @@ const saveSetting = () => {
   settings.value.sideTheme = storeSettings.value.sideTheme;
   settings.value.theme = storeSettings.value.theme;
   settings.value.navType = storeSettings.value.navType;
-  settings.value.radiusBase = storeSettings.value.radiusBase;
   settings.value.fullHeightTable = storeSettings.value.fullHeightTable;
   setTimeout(() => {
     modal.closeLoading();
@@ -281,10 +268,6 @@ const resetSetting = () => {
 const openSetting = () => {
   showSettings.value = true;
 };
-
-onMounted(() => {
-  radiusBaseChange(storeSettings.value.radiusBase);
-});
 
 defineExpose({
   openSetting
@@ -320,7 +303,7 @@ defineExpose({
   .setting-drawer-block-checbox-item {
     position: relative;
     margin-right: 16px;
-    border-radius: 12px;
+    border-radius: 0;
     cursor: pointer;
     overflow: hidden;
     border: 1px solid var(--app-surface-border);
@@ -330,7 +313,7 @@ defineExpose({
 
     &:hover {
       border-color: rgba(64, 158, 255, 0.28);
-      transform: translateY(-1px);
+      transform: none;
     }
 
     img {
@@ -342,8 +325,8 @@ defineExpose({
     .custom-img {
       width: 48px;
       height: 38px;
-      border-radius: 5px;
-      box-shadow: 1px 1px 2px #898484;
+      border-radius: 0;
+      box-shadow: none;
     }
 
     .setting-drawer-block-checbox-selectIcon {
@@ -389,7 +372,7 @@ defineExpose({
     cursor: pointer;
     width: 56px;
     height: 48px;
-    border-radius: 12px;
+    border-radius: 0;
     background: var(--app-elevated-soft-bg);
     border: 2px solid transparent;
     transition:
@@ -397,7 +380,7 @@ defineExpose({
       border-color 0.2s ease;
 
     &:hover {
-      transform: translateY(-1px);
+      transform: none;
     }
   }
 
@@ -414,13 +397,13 @@ defineExpose({
       position: absolute;
       height: 100%;
       top: 0;
-      border-radius: 4px 0 0 4px;
+      border-radius: 00 0 4px;
     }
   }
 
   .mix {
     b:first-child {
-      border-radius: 4px 4px 0 0;
+      border-radius: 00 0;
       display: block;
       height: 30%;
       background: #1b2a47;
@@ -440,7 +423,7 @@ defineExpose({
       display: block;
       height: 30%;
       background: #1b2a47;
-      border-radius: 4px 4px 0 0;
+      border-radius: 00 0;
     }
 
     b:last-child {

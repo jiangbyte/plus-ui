@@ -112,36 +112,36 @@ const goTarget = (url: string) => {
 .home {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 8px;
 }
 
 .hero-panel,
 .section-card {
-  border-radius: 28px;
+  border-radius: 0;
   border: 1px solid var(--app-surface-border);
   background: var(--app-surface-bg);
-  box-shadow: var(--app-shadow-sm);
-  backdrop-filter: blur(18px);
+  box-shadow: none;
+  backdrop-filter: none;
 }
 
 .hero-panel {
   display: grid;
   grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.7fr);
-  gap: 18px;
-  padding: 30px;
-  background: radial-gradient(circle at top left, rgba(53, 109, 255, 0.16), transparent 30%), var(--app-surface-bg);
+  gap: 12px;
+  padding: 16px 18px;
+  background: var(--app-surface-bg);
 }
 
 .hero-copy {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 8px;
 
   h1 {
     margin: 0;
-    font-size: clamp(30px, 4vw, 46px);
-    line-height: 1.06;
-    letter-spacing: -0.04em;
+    font-size: clamp(24px, 3.2vw, 34px);
+    line-height: 1.15;
+    letter-spacing: -0.03em;
     color: var(--app-text-title);
   }
 
@@ -149,16 +149,16 @@ const goTarget = (url: string) => {
     margin: 0;
     max-width: 760px;
     color: var(--app-text-muted);
-    font-size: 15px;
-    line-height: 1.8;
+    font-size: 14px;
+    line-height: 1.6;
   }
 }
 
 .hero-badge {
   display: inline-flex;
   width: fit-content;
-  padding: 8px 14px;
-  border-radius: 999px;
+  padding: 4px 10px;
+  border-radius: 0;
   background: rgba(53, 109, 255, 0.12);
   color: var(--app-accent-strong);
   font-size: 12px;
@@ -170,57 +170,57 @@ const goTarget = (url: string) => {
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 8px;
+  gap: 8px;
+  margin-top: 2px;
 }
 
 .hero-stats {
   display: grid;
-  gap: 12px;
+  gap: 8px;
 }
 
 .stat-card {
-  padding: 18px 20px;
-  border-radius: 22px;
+  padding: 12px 14px;
+  border-radius: 0;
   background: var(--app-elevated-soft-bg);
   border: 1px solid var(--app-surface-border);
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
 
   strong {
     color: var(--app-text-title);
-    font-size: 24px;
+    font-size: 20px;
     letter-spacing: -0.03em;
   }
 
   span {
     color: var(--app-text-muted);
-    font-size: 13px;
+    font-size: 12px;
   }
 }
 
 .content-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
-  gap: 20px;
+  gap: 8px;
 }
 
 .section-card {
-  padding: 24px;
+  padding: 14px 16px;
 }
 
 .section-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 18px;
+  margin-bottom: 10px;
 
   h2 {
-    margin: 6px 0 0;
+    margin: 0;
     color: var(--app-text-title);
-    font-size: 26px;
-    letter-spacing: -0.03em;
+    font-size: 18px;
+    letter-spacing: -0.02em;
   }
 }
 
@@ -235,22 +235,19 @@ const goTarget = (url: string) => {
 .product-list,
 .capability-groups {
   display: grid;
-  gap: 16px;
+  gap: 8px;
 }
 
 .product-card {
-  padding: 22px;
-  border-radius: 24px;
+  padding: 12px 14px;
+  border-radius: 0;
   background: var(--app-elevated-soft-bg);
   border: 1px solid var(--app-surface-border);
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    border-color 0.25s ease;
+  transition: border-color 0.2s ease;
 
   &:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--app-shadow-sm);
+    transform: none;
+    box-shadow: none;
     border-color: rgba(53, 109, 255, 0.2);
   }
 }
@@ -259,26 +256,27 @@ const goTarget = (url: string) => {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 16px;
+  gap: 12px;
 
   h3 {
-    margin: 0 0 8px;
+    margin: 0 0 4px;
     color: var(--app-text-title);
-    font-size: 22px;
-    letter-spacing: -0.03em;
+    font-size: 16px;
+    letter-spacing: -0.02em;
   }
 
   p {
     margin: 0;
     color: var(--app-text-muted);
-    line-height: 1.8;
+    line-height: 1.55;
+    font-size: 13px;
   }
 }
 
 .product-version {
   flex-shrink: 0;
-  padding: 8px 12px;
-  border-radius: 999px;
+  padding: 4px 8px;
+  border-radius: 0;
   background: rgba(53, 109, 255, 0.12);
   color: var(--app-accent-strong);
   font-size: 12px;
@@ -288,31 +286,31 @@ const goTarget = (url: string) => {
 .product-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 18px;
+  gap: 6px;
+  margin-top: 10px;
 }
 
 .product-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 18px;
+  gap: 8px;
+  margin-top: 10px;
 }
 
 .capability-card {
-  background: radial-gradient(circle at top right, rgba(14, 165, 233, 0.12), transparent 28%), var(--app-surface-bg);
+  background: var(--app-surface-bg);
 }
 
 .capability-group {
-  padding: 18px 18px 18px 20px;
-  border-radius: 22px;
+  padding: 12px 14px;
+  border-radius: 0;
   background: var(--app-elevated-soft-bg);
   border: 1px solid var(--app-surface-border);
 
   h3 {
-    margin: 0 0 12px;
+    margin: 0 0 8px;
     color: var(--app-text-title);
-    font-size: 18px;
+    font-size: 15px;
   }
 
   ul {
@@ -320,25 +318,26 @@ const goTarget = (url: string) => {
     padding: 0;
     list-style: none;
     display: grid;
-    gap: 10px;
+    gap: 6px;
   }
 
   li {
     position: relative;
-    padding-left: 16px;
+    padding-left: 14px;
     color: var(--app-text-muted);
-    line-height: 1.7;
+    line-height: 1.5;
+    font-size: 13px;
 
     &::before {
       content: '';
       position: absolute;
       left: 0;
-      top: 10px;
-      width: 7px;
-      height: 7px;
+      top: 7px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
       background: var(--app-accent-strong);
-      box-shadow: 0 0 0 5px rgba(53, 109, 255, 0.12);
+      box-shadow: none;
     }
   }
 }
@@ -353,8 +352,8 @@ const goTarget = (url: string) => {
 @media (max-width: 640px) {
   .hero-panel,
   .section-card {
-    padding: 20px;
-    border-radius: 22px;
+    padding: 12px;
+    border-radius: 0;
   }
 
   .product-top {
@@ -364,7 +363,7 @@ const goTarget = (url: string) => {
 
 html.dark {
   .hero-panel {
-    background: radial-gradient(circle at top left, rgba(53, 109, 255, 0.18), transparent 30%), var(--app-surface-bg);
+    background: var(--app-surface-bg);
   }
 }
 </style>

@@ -33,6 +33,7 @@
                 :show-overflow-tooltip="true"
                 sortable
                 align="center"
+                show-overflow-tooltip
               ></el-table-column>
               <el-table-column
                 prop="createTime"
@@ -41,6 +42,7 @@
                 :show-overflow-tooltip="true"
                 sortable
                 align="center"
+                show-overflow-tooltip
               ></el-table-column>
               <el-table-column
                 prop="updateTime"
@@ -49,6 +51,7 @@
                 :show-overflow-tooltip="true"
                 sortable
                 align="center"
+                show-overflow-tooltip
               ></el-table-column>
               <el-table-column
                 prop="runDuration"
@@ -57,6 +60,7 @@
                 :show-overflow-tooltip="true"
                 sortable
                 align="center"
+                show-overflow-tooltip
               ></el-table-column>
               <el-table-column prop="attachmentList" width="120" label="附件" align="center">
                 <template #default="scope">
@@ -75,6 +79,7 @@
                         width="202"
                         :show-overflow-tooltip="true"
                         label="附件名称"
+                        show-overflow-tooltip
                       ></el-table-column>
                       <el-table-column prop="name" width="80" align="center" :show-overflow-tooltip="true" label="操作">
                         <template #default="tool">

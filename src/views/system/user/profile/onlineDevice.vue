@@ -1,6 +1,6 @@
 <template>
   <div class="profile-table-wrap">
-    <el-table :data="devices" border class="data-table profile-device-table">
+    <el-table :data="devices" border class="data-table profile-device-table" show-overflow-tooltip>
       <el-table-column label="设备类型" align="center">
         <template #default="scope">
           <dict-tag :options="sys_device_type" :value="scope.row.deviceType" />

@@ -147,7 +147,7 @@ watch(
     justify-content: center;
     align-items: center;
     border: 1px solid var(--app-surface-border);
-    border-radius: 12px;
+    border-radius: 0;
     background: var(--app-surface-bg);
     transition:
       border-color 0.2s ease,
@@ -159,7 +159,7 @@ watch(
       border-color: var(--el-color-primary);
       background: var(--app-accent-soft);
       color: var(--el-color-primary);
-      transform: translateY(-1px);
+      transform: none;
     }
   }
 

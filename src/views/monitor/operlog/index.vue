@@ -1,7 +1,7 @@
 <template>
   <div class="p-2 app-container monitor-operlog-page">
     <div class="search-wrap">
-      <el-card shadow="hover" class="search-panel" :class="{ 'is-collapsed': !showSearch }">
+      <el-card shadow="never" class="search-panel" :class="{ 'is-collapsed': !showSearch }">
         <template #header>
           <div class="panel-heading search-panel-toggle" @click.stop="showSearch = !showSearch">
             <div>
@@ -68,7 +68,7 @@
       </el-card>
     </div>
 
-    <el-card shadow="hover" class="table-panel">
+    <el-card shadow="never" class="table-panel">
       <template #header>
         <div class="toolbar-shell">
           <div class="table-heading">
@@ -119,6 +119,7 @@
         :default-sort="defaultSort"
         @selection-change="handleSelectionChange"
         @sort-change="handleSortChange"
+        show-overflow-tooltip
       >
         <el-table-column type="selection" width="50" align="center" />
         <el-table-column label="日志编号" align="center" prop="operId" />
@@ -137,6 +138,8 @@
           sortable="custom"
           :sort-orders="['descending', 'ascending']"
         />
+          show-overflow-tooltip
+        >
         <el-table-column label="部门" align="center" prop="deptName" width="130" :show-overflow-tooltip="true" />
         <el-table-column label="客户端" align="center" prop="clientKey" width="110" :show-overflow-tooltip="true" />
         <el-table-column label="设备类型" align="center" prop="deviceType" width="110" :show-overflow-tooltip="true">
@@ -172,6 +175,7 @@
           :show-overflow-tooltip="true"
           sortable="custom"
           :sort-orders="['descending', 'ascending']"
+          show-overflow-tooltip
         >
           <template #default="scope">
             <span>{{ scope.row.costTime }}毫秒</span>

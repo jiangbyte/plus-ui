@@ -92,6 +92,11 @@ const setLayout = () => {
     position: fixed;
     top: 0;
   }
+
+  &.mobile {
+    height: auto;
+    min-height: 100%;
+  }
 }
 
 .drawer-bg {
@@ -109,8 +114,8 @@ const setLayout = () => {
   z-index: 9;
   display: flex;
   flex-direction: column;
-  gap: 3px;
-  padding: 12px 12px 0;
+  gap: 0;
+  padding: 0;
   background: transparent;
 }
 
@@ -118,12 +123,12 @@ const setLayout = () => {
   position: fixed;
   top: 0;
   right: 0;
-  width: calc(100% - #{$base-sidebar-width} - 12px);
+  width: calc(100% - #{$base-sidebar-width});
   transition: width 0.28s;
 }
 
 .hideSidebar .fixed-header {
-  width: calc(100% - 70px);
+  width: calc(100% - 58px);
 }
 
 .sidebarHide .fixed-header {

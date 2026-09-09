@@ -1,7 +1,7 @@
 <template>
   <div class="p-2 app-container system-menu-page">
     <div class="search-wrap">
-      <el-card shadow="hover" class="search-panel" :class="{ 'is-collapsed': !showSearch }">
+      <el-card shadow="never" class="search-panel" :class="{ 'is-collapsed': !showSearch }">
         <template #header>
           <div class="panel-heading search-panel-toggle" @click.stop="showSearch = !showSearch">
             <div>
@@ -32,7 +32,7 @@
       </el-card>
     </div>
 
-    <el-card shadow="hover" class="table-panel">
+    <el-card shadow="never" class="table-panel">
       <template #header>
         <div class="toolbar-shell">
           <div class="table-heading">
@@ -71,6 +71,7 @@
         lazy
         :load="getChildrenList"
         :expand-change="expandMenuHandle"
+        show-overflow-tooltip
       >
         <el-table-column prop="menuName" label="菜单名称" :show-overflow-tooltip="true" width="220">
           <template #default="scope">

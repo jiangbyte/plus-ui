@@ -1,6 +1,6 @@
 <template>
   <div class="p-2 app-container auth-role-page">
-    <el-card shadow="hover" class="search-panel auth-role-info">
+    <el-card shadow="never" class="search-panel auth-role-info">
       <template #header>
         <div class="panel-heading">
           <div><h3>基本信息</h3></div>
@@ -16,7 +16,7 @@
       </el-form>
     </el-card>
 
-    <el-card shadow="hover" class="table-panel">
+    <el-card shadow="never" class="table-panel">
       <template #header>
         <div class="toolbar-shell">
           <div class="table-heading">
@@ -37,6 +37,7 @@
         :data="roles.slice((pageNum - 1) * pageSize, pageNum * pageSize)"
         @row-click="clickRow"
         @selection-change="handleSelectionChange"
+        show-overflow-tooltip
       >
         <el-table-column label="序号" width="55" type="index" align="center">
           <template #default="scope">

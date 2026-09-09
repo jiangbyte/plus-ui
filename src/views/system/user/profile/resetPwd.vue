@@ -83,11 +83,11 @@ const close = () => {
 }
 
 .profile-form :deep(.el-input__wrapper) {
-  border-radius: 12px;
+  border-radius: 0;
 }
 
 .profile-form :deep(.el-button) {
-  border-radius: 10px;
+  border-radius: 0;
 }
 
 .profile-form__actions :deep(.el-form-item__content) {

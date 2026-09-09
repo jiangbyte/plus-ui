@@ -1,7 +1,7 @@
 <template>
   <div class="p-2 app-container tool-gen-page">
     <div class="search-wrap">
-      <el-card shadow="hover" class="search-panel" :class="{ 'is-collapsed': !showSearch }">
+      <el-card shadow="never" class="search-panel" :class="{ 'is-collapsed': !showSearch }">
         <template #header>
           <div class="panel-heading search-panel-toggle" @click.stop="showSearch = !showSearch">
             <div>
@@ -46,7 +46,7 @@
       </el-card>
     </div>
 
-    <el-card shadow="hover" class="table-panel">
+    <el-card shadow="never" class="table-panel">
       <template #header>
         <div class="toolbar-shell">
           <div class="table-heading">
@@ -92,6 +92,7 @@
         class="data-table"
         :data="tableList"
         @selection-change="handleTableSelectionChange"
+        show-overflow-tooltip
       >
         <el-table-column type="selection" align="center" width="55"></el-table-column>
         <el-table-column label="序号" type="index" width="50" align="center">

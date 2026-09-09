@@ -1,7 +1,7 @@
 <template>
   <div class="p-2 app-container system-config-page">
     <div class="search-wrap">
-      <el-card shadow="hover" class="search-panel" :class="{ 'is-collapsed': !showSearch }">
+      <el-card shadow="never" class="search-panel" :class="{ 'is-collapsed': !showSearch }">
         <template #header>
           <div class="panel-heading search-panel-toggle" @click.stop="showSearch = !showSearch">
             <div>
@@ -35,7 +35,7 @@
       </el-card>
     </div>
 
-    <el-card v-loading="loading" shadow="hover" class="table-panel config-panel">
+    <el-card v-loading="loading" shadow="never" class="table-panel config-panel">
       <template #header>
         <div class="toolbar-shell">
           <div class="table-heading">

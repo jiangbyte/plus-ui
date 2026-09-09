@@ -127,10 +127,6 @@ declare global {
      * 主题模式
      */
     theme: string;
-    /**
-     * 页面圆角大小
-     */
-    radiusBase: number;
 
     /**
      * 表格全高内部滚动

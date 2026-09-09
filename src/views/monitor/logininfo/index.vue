@@ -1,7 +1,7 @@
 <template>
   <div class="p-2 app-container monitor-logininfo-page">
     <div class="search-wrap">
-      <el-card shadow="hover" class="search-panel" :class="{ 'is-collapsed': !showSearch }">
+      <el-card shadow="never" class="search-panel" :class="{ 'is-collapsed': !showSearch }">
         <template #header>
           <div class="panel-heading search-panel-toggle" @click.stop="showSearch = !showSearch">
             <div>
@@ -46,7 +46,7 @@
       </el-card>
     </div>
 
-    <el-card shadow="hover" class="table-panel">
+    <el-card shadow="never" class="table-panel">
       <template #header>
         <div class="toolbar-shell">
           <div class="table-heading">
@@ -101,6 +101,7 @@
         border
         @selection-change="handleSelectionChange"
         @sort-change="handleSortChange"
+        show-overflow-tooltip
       >
         <el-table-column type="selection" width="55" align="center" />
         <el-table-column label="访问编号" align="center" prop="infoId" />
@@ -112,6 +113,8 @@
           sortable="custom"
           :sort-orders="['descending', 'ascending']"
         />
+          show-overflow-tooltip
+        >
         <el-table-column label="客户端" align="center" prop="clientKey" :show-overflow-tooltip="true" />
         <el-table-column label="设备类型" align="center">
           <template #default="scope">

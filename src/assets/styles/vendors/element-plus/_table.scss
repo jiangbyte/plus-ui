@@ -20,6 +20,14 @@
   tbody tr:last-child td:last-child {
     border-bottom-right-radius: var(--app-radius-md);
   }
+
+  // 超长内容单行省略，避免数字/英文被拆到下一行
+  .cell {
+    white-space: nowrap;
+    word-break: keep-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 .el-table__header-wrapper {
@@ -84,7 +92,8 @@ html.dark {
   .el-table__header-wrapper,
   .el-table__fixed-header-wrapper {
     th {
-      word-break: break-word;
+      word-break: keep-all;
+      white-space: nowrap;
       background-color: $table-header-bg !important;
       color: $table-header-text-color;
       height: 40px !important;

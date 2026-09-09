@@ -516,7 +516,7 @@ onBeforeUnmount(() => {
       color: $btn-hover-color;
       border-color: var(--el-color-primary-light-5);
       box-shadow: var(--app-shadow-sm);
-      transform: translateY(-1px);
+      transform: none;
     }
   }
 
@@ -559,7 +559,7 @@ onBeforeUnmount(() => {
         color: var(--el-color-primary);
         border-color: var(--el-color-primary-light-5);
         box-shadow: var(--app-shadow-sm);
-        transform: translateY(-1px);
+        transform: none;
       }
 
       &:first-of-type {
@@ -581,7 +581,7 @@ onBeforeUnmount(() => {
           display: inline-block;
           width: 8px;
           height: 8px;
-          border-radius: 50%;
+          border-radius: 0;
           position: relative;
           margin-right: 5px;
         }
@@ -631,7 +631,7 @@ onBeforeUnmount(() => {
       color: $btn-hover-color;
       border-color: var(--el-color-primary-light-5);
       box-shadow: var(--app-shadow-sm);
-      transform: translateY(-1px);
+      transform: none;
     }
   }
 
@@ -675,7 +675,7 @@ onBeforeUnmount(() => {
       width: 16px;
       height: 16px;
       vertical-align: 2px;
-      border-radius: 50%;
+      border-radius: 0;
       text-align: center;
       transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
       transform-origin: 100% 50%;
@@ -719,7 +719,7 @@ body.tags-fullscreen-mode .navbar {
 
 .main-container.tags-fullscreen-mode .layout-header {
   gap: 0;
-  padding: 12px 12px 0;
+  padding: 0;
 }
 
 .main-container.tags-fullscreen-mode .layout-header.fixed-header {
@@ -734,7 +734,7 @@ body.tags-fullscreen-mode .navbar {
 .main-container.tags-fullscreen-mode .app-main.with-fixed-header.with-tags-view {
   height: calc(100vh - var(--tags-fullscreen-header-height, 50px));
   min-height: calc(100vh - var(--tags-fullscreen-header-height, 50px)) !important;
-  padding-top: 12px !important;
+  padding-top: 0 !important;
   overflow: auto;
 }
 </style>

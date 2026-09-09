@@ -10,7 +10,7 @@
   overflow: hidden;
   border: 1px solid var(--app-surface-border);
   background: var(--app-surface-bg);
-  border-radius: 20px;
+  border-radius: 0;
   box-shadow: var(--app-shadow-md);
 
   .el-message-box__header {
@@ -28,11 +28,9 @@
     right: 16px;
     width: 32px;
     height: 32px;
-    border-radius: 10px;
-    background: var(--app-elevated-close-bg);
-    transition:
-      background-color 0.2s ease,
-      transform 0.2s ease;
+    border-radius: 0;
+    background: transparent;
+    transition: color 0.2s ease;
 
     .el-message-box__close {
       color: var(--app-text-muted);
@@ -40,8 +38,7 @@
     }
 
     &:hover {
-      background: var(--app-elevated-close-hover-bg);
-      transform: translateY(-1px);
+      background: transparent;
 
       .el-message-box__close {
         color: var(--app-accent-strong);
@@ -61,14 +58,14 @@
   .el-message-box__status {
     position: static;
     margin-top: 1px;
-    width: 30px;
-    height: 30px;
-    border-radius: 10px;
+    width: auto;
+    height: auto;
+    border-radius: 0;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 18px !important;
-    background: var(--app-elevated-soft-bg);
+    font-size: 22px !important;
+    background: transparent;
   }
 
   .el-message-box__message {

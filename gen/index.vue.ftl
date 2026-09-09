@@ -101,7 +101,7 @@
         </div>
       </template>
 
-      <el-table v-loading="loading" border class="data-table" :data="${businessName}List" @selection-change="handleSelectionChange">
+      <el-table v-loading="loading" border class="data-table" :data="${businessName}List" show-overflow-tooltip @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="55" align="center" />
 <#list columns as column>
 <#if column.pk && column.list>

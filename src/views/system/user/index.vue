@@ -1,6 +1,6 @@
 <template>
   <div class="p-2 system-user-page">
-    <el-row :gutter="20" class="content-grid">
+    <el-row :gutter="8" class="content-grid">
       <!-- 部门树 -->
       <tree-panel
         ref="treePanelRef"
@@ -18,7 +18,7 @@
         :class="{ 'is-tree-collapsed': treeCollapsed }"
       >
         <div class="search-wrap">
-          <el-card shadow="hover" class="search-panel" :class="{ 'is-collapsed': !showSearch }">
+          <el-card shadow="never" class="search-panel" :class="{ 'is-collapsed': !showSearch }">
             <template #header>
               <div class="panel-heading search-panel-toggle" @click.stop="showSearch = !showSearch">
                 <div>
@@ -82,7 +82,7 @@
           </el-card>
         </div>
 
-        <el-card shadow="hover" class="table-panel">
+        <el-card shadow="never" class="table-panel">
           <template #header>
             <div class="toolbar-shell">
               <div class="table-heading">
@@ -159,6 +159,7 @@
             class="data-table"
             :data="userList"
             @selection-change="handleSelectionChange"
+            show-overflow-tooltip
           >
             <el-table-column type="selection" width="50" align="center" />
             <el-table-column v-if="columns[0].visible" key="userId" label="用户编号" align="center" prop="userId" />
@@ -168,6 +169,7 @@
               label="用户名称"
               align="center"
               :show-overflow-tooltip="true"
+              show-overflow-tooltip
             >
               <template #default="scope">
                 <el-link type="primary" underline="never" @click="handleViewDetail(scope.row)">
@@ -183,6 +185,8 @@
               prop="nickName"
               :show-overflow-tooltip="true"
             />
+              show-overflow-tooltip
+            >
             <el-table-column
               v-if="columns[3].visible"
               key="deptName"
@@ -191,6 +195,8 @@
               prop="deptName"
               :show-overflow-tooltip="true"
             />
+              show-overflow-tooltip
+            >
             <el-table-column
               v-if="columns[4].visible"
               key="phoneNumber"

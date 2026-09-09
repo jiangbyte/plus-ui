@@ -157,7 +157,7 @@ const readAll = () => {
       align-items: flex-start;
       padding: 12px;
       margin: 4px 0;
-      border-radius: 12px;
+      border-radius: 0;
       cursor: pointer;
       transition:
         background-color 0.2s ease,
@@ -165,7 +165,7 @@ const readAll = () => {
 
       &:hover {
         background: var(--app-accent-soft);
-        transform: translateY(-1px);
+        transform: none;
       }
 
       .content-box-msg {

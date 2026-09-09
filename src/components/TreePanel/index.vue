@@ -5,7 +5,7 @@
     class="tree-panel-col"
     :class="{ 'is-collapsed': modelCollapsed }"
   >
-    <el-card shadow="hover" class="side-panel tree-panel-shell" :class="{ 'is-collapsed': modelCollapsed }">
+    <el-card shadow="never" class="side-panel tree-panel-shell" :class="{ 'is-collapsed': modelCollapsed }">
       <template #header>
         <div
           class="panel-heading search-panel-toggle tree-panel-header"
@@ -207,6 +207,9 @@ $mobile-breakpoint: 900px;
 
 .tree-panel-col {
   min-width: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   transition:
     max-width 0.24s ease,
     flex-basis 0.24s ease;
@@ -220,23 +223,24 @@ $mobile-breakpoint: 900px;
 .tree-panel-shell,
 .side-panel {
   height: 100%;
-}
-
-.tree-panel-shell {
-  --tree-panel-max-height: 620px;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .tree-panel-shell :deep(.el-card__header) {
   display: block;
   padding: 12px 16px !important;
+  flex-shrink: 0;
 }
 
 .tree-panel-shell :deep(.el-card__body) {
   display: flex;
   flex-direction: column;
-  height: var(--tree-panel-max-height);
+  flex: 1 1 auto;
+  height: auto !important;
   min-height: 0;
-  max-height: var(--tree-panel-max-height);
+  max-height: none !important;
   overflow: hidden;
 }
 
@@ -292,7 +296,7 @@ $mobile-breakpoint: 900px;
 }
 
 .dept-tree::-webkit-scrollbar-thumb {
-  border-radius: 999px;
+  border-radius: 0;
   background: var(--app-text-muted);
   opacity: 0.55;
 }
@@ -325,10 +329,19 @@ $mobile-breakpoint: 900px;
   .tree-panel-col {
     max-width: 100%;
     flex: 0 0 100%;
+    height: auto;
   }
 
-  .tree-panel-shell {
-    --tree-panel-max-height: 420px;
+  .tree-panel-shell,
+  .side-panel {
+    flex: none;
+    height: auto;
+  }
+
+  .tree-panel-shell :deep(.el-card__body) {
+    flex: none;
+    height: auto !important;
+    max-height: 420px !important;
   }
 
   .side-panel.is-collapsed {

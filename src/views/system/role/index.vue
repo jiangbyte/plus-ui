@@ -1,7 +1,7 @@
 <template>
   <div class="p-2 system-role-page">
     <div class="search-wrap">
-      <el-card shadow="hover" class="search-panel" :class="{ 'is-collapsed': !showSearch }">
+      <el-card shadow="never" class="search-panel" :class="{ 'is-collapsed': !showSearch }">
         <template #header>
           <div class="panel-heading search-panel-toggle" @click.stop="showSearch = !showSearch">
             <div>
@@ -47,7 +47,7 @@
       </el-card>
     </div>
 
-    <el-card shadow="hover" class="table-panel">
+    <el-card shadow="never" class="table-panel">
       <template #header>
         <div class="toolbar-shell">
           <div class="table-heading">
@@ -93,6 +93,7 @@
         v-loading="loading"
         :data="roleList"
         @selection-change="handleSelectionChange"
+        show-overflow-tooltip
       >
         <el-table-column type="selection" width="55" align="center" />
         <el-table-column v-if="false" label="角色编号" prop="roleId" width="120" />
@@ -168,7 +169,7 @@
 
     <el-dialog v-model="dialog.visible" :title="dialog.title" width="720px" append-to-body>
       <el-form ref="roleFormRef" :model="form" :rules="rules" label-width="100px" class="dialog-grid-form">
-        <el-row :gutter="16">
+        <el-row :gutter="8">
           <el-col :span="12">
             <el-form-item label="角色名称" prop="roleName">
               <el-input v-model="form.roleName" placeholder="请输入角色名称" />
@@ -1075,7 +1076,7 @@ onMounted(() => {
   :deep(.tree-border) {
     max-height: 320px;
     padding: 8px;
-    border-radius: 6px;
+    border-radius: 0;
     overflow: auto;
   }
 

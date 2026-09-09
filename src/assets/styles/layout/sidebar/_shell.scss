@@ -7,7 +7,7 @@
   .main-container {
     height: 100%;
     transition: margin-left 0.28s;
-    margin-left: calc(#{$base-sidebar-width} + 12px);
+    margin-left: $base-sidebar-width;
     position: relative;
     background: transparent;
   }
@@ -22,11 +22,11 @@
     transition: width 0.28s;
     width: $base-sidebar-width !important;
     background: transparent;
-    height: calc(100vh - 24px);
+    height: 100vh;
     position: fixed;
     font-size: 0;
-    top: 12px;
-    left: 12px;
+    top: 0;
+    left: 0;
     z-index: 1001;
     overflow: hidden;
     box-sizing: border-box;
