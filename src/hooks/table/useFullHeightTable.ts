@@ -215,7 +215,7 @@ export function useFullHeightTable() {
 
   const isMobileLayout = () => window.innerWidth <= 900;
 
-const recalculate = () => {
+  const recalculate = () => {
     animationFrame = 0;
     if (!settingsStore.fullHeightTable || isMobileLayout()) {
       resetAllTables();
